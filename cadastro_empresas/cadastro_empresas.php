@@ -1,3 +1,6 @@
+<?php
+include '../conexao.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +12,9 @@
 <body>
     <div class="square">
         <h1>Cadastro de Empresas</h1>
-        <form action="" method=""  >
+        <form action="" method="post"  >
             <input type="text" name="nome" placeholder="Nome"/>
-            <input type="text" name="cpf" placeholder="CNPJ"/>
+            <input type="text" name="cnpj" placeholder="CNPJ"/>
             <button type="submit">Cadastrar</button>
         </form>
     </div>
