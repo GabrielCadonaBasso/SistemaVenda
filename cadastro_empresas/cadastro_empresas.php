@@ -1,5 +1,8 @@
 <?php
-include '../conexao.php';
+    include '../funcoes.php';
+    
+    ConectarBanco();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
