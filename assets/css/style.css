@@ -51,6 +51,7 @@ body{
     margin-top: 20px;
     width: 100px;
     border-radius: 20px;
+    margin-left: 10px;
 }
 .square a{
     color: #666;
@@ -60,4 +61,11 @@ body{
 .square a:hover{
     color: #333;
     
+}
+
+.DivDoisBotoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;  
 }

@@ -15,4 +15,12 @@
             echo "Erro na conexão: " . $e->getMessage();
         }
     }
+
+    function CadastraEmpresas() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $nome = $_POST['nome'] ?? 'Nome não informado';
+            $cnpj = $_POST['cnpj'] ?? 'Cnpj não informado';
+            
+        }
+    }
 ?>

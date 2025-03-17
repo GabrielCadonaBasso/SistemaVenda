@@ -2,7 +2,7 @@
     include '../funcoes.php';
     
     ConectarBanco();
-
+    CadastraEmpresas();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,13 @@
         <form action="" method="post"  >
             <input type="text" name="nome" placeholder="Nome"/>
             <input type="text" name="cnpj" placeholder="CNPJ"/>
-            <button type="submit">Cadastrar</button>
+            <input type="text" name="email" placeholder="Email"/>
+            <input type="text" name="senha" placeholder="Senha"/>
+            <div class="DivDoisBotoes">
+                <button type="submit">Cadastrar</button>
+                <button type="button">Cancelar</button>    
+            </div>
+
         </form>
     </div>
 </body>
