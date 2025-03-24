@@ -1,7 +1,18 @@
 <?php
-    include '../funcoes.php';
-    
-    ConectarBanco();
+    try {
+        $servidor = "localhost";
+        $usuario = "root";
+        $senha = "";
+        $banco = "SISTEMA";
+
+        $conn = new mysqli($servidor, $usuario, $senha, $banco);
+
+        if ($conn->connect_error) {
+            die("Falha na conexão: " . $conn->connect_error);
+        }
+    } catch (PDOException $e) {
+        echo "Erro na conexão: " . $e->getMessage();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,11 +36,35 @@
                     <button type="button">Cancelar</button>    
                 </div>
             </form>
-        </div>
-        <div class="MostraResultado">
-            <?php
-                CadastraEmpresas();
-            ?>    
+            <p>
+                <?php
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        $nome = $_POST['nome'];
+                        $cnpj = $_POST['cnpj'];
+                        $email = $_POST['email'];
+                        $senha = $_POST['senha'];
+
+                        if (!empty($cnpj) && !empty($senha)) {
+                            $query = "SELECT * FROM empresas WHERE CNPJ_EMP = '$cnpj' AND SENHA_EMP = '$senha'";
+                            $result = mysqli_query($conn, $query);
+
+                            $quant_retorno = $result->num_rows;
+
+                            if ($quant_retorno == 1){
+                                echo "Usuário Já Cadastrado!";
+                            }else{
+                                $query = "INSERT INTO empresas (NOME_EMP, CNPJ_EMP, EMAIL_EMP, SENHA_EMP) VALUES('$nome', '$cnpj', '$email', '$senha')";
+
+                                $result = mysqli_query($conn, $query);
+
+                                echo "Usuário Cadastrado com Sucesso!";
+
+                                mysqli_close($conn);
+                            }
+                        }
+                    }
+                ?>
+            </p>
         </div>
     </div>
 </body>
