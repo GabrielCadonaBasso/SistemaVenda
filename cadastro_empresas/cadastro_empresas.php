@@ -45,7 +45,7 @@
                         $senha = $_POST['senha'];
 
                         if (!empty($cnpj) && !empty($senha)) {
-                            $query = "SELECT * FROM empresas WHERE CNPJ_EMP = '$cnpj' AND SENHA_EMP = '$senha'";
+                            $query = "SELECT * FROM empresas WHERE CNPJ_EMP = '$cnpj'";
                             $result = mysqli_query($conn, $query);
 
                             $quant_retorno = $result->num_rows;
