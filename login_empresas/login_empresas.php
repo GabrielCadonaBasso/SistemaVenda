@@ -47,7 +47,13 @@
                             $quant_retorno = $result->num_rows;
 
                             if ($quant_retorno == 1){
-                                echo "Usuário Logado!";
+
+                                session_start();
+
+                                $_SESSION['CNPJ_EMP'] = $cnpj;
+                                $_SESSION['SENHA_EMP'] = $senha;
+
+                                header("Location: ../cadastro_funcionarios/cadastro_funcionarios.php");
                             }else{
                                 echo "CNPJ ou Senha Incorretos!";
                             }
