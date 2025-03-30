@@ -1,0 +1,127 @@
+*{
+    font-family:Arial;
+    box-sizing: border-box;
+}
+body{
+    
+    margin:0;
+    padding: 0;
+}
+header{
+    height: 100px;
+    background-color: #333;
+    color: white;
+    
+}
+.header{
+    max-width: 1300px;
+    height: 100px;
+    display: flex;
+    margin:auto;
+    align-items: center;
+}
+.container{
+    padding:0 25px;
+    width: 1300px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+
+}
+
+.menu ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu ul li{
+    list-style: none;
+    margin: 0px 10px;
+    
+    
+
+}
+.menu ul li a{
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.menu ul li .active, .menu ul li a:hover{
+    color: #999;
+}
+.menu-mobile{
+    width: 34px;
+    height: 34px;
+    display:none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-mobile .menu-item{
+    height: 6px;
+    width: 34px;
+    background-color: #FFF;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px)
+}
+.main .main-left{
+    flex:1
+}
+.main .main-right{
+    flex:1
+}
+.main .botoes {
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    gap:15px;
+
+}
+.botoes a{
+    padding: 60px 15px;
+    background-color: #666;
+    color: #FFF;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 25px;
+    border-radius: 5px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0px 0px 5px black;
+    text-align: center;
+    
+}
+.botoes a:hover{
+    opacity: 0.8;
+}
+
+
+
+
+
+
+
+@media(max-width:750px){
+    .menu nav{
+        display: none;
+    }
+    .menu-mobile{
+        display: flex;
+        cursor: pointer;
+    }
+    .main{
+        height: auto;
+    }
+}
+

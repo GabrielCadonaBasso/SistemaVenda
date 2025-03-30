@@ -1,0 +1,216 @@
+*{
+    font-family:Arial;
+    box-sizing: border-box;
+}
+body{
+    
+    margin:0;
+    padding: 0;
+}
+header{
+    height: 100px;
+    background-color: #333;
+    color: white;
+    
+}
+.header{
+    max-width: 1300px;
+    height: 100px;
+    display: flex;
+    margin:auto;
+    align-items: center;
+}
+.container{
+    padding:0 25px;
+    width: 1300px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+
+}
+
+.menu ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu ul li{
+    list-style: none;
+    margin: 0px 10px;
+    
+    
+
+}
+.menu ul li a{
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.menu ul li .active, .menu ul li a:hover{
+    color: #999;
+}
+.menu-mobile{
+    width: 34px;
+    height: 34px;
+    display:none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-mobile .menu-item{
+    height: 6px;
+    width: 34px;
+    background-color: #FFF;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 100px);
+    
+}
+.main-header, .main-header .container{
+    background-color: #999;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-header form{
+    display: flex;
+    justify-content: center;
+    
+}
+.main-header form input{
+    width: 400px;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    background-color: #FFF;
+    border-radius: 2px;
+    padding: 10px;
+}
+.main-header form button{
+    background: none;
+    border: none;
+    margin-left: -45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-header form button img{
+    max-height: 28px;
+}
+.main-estoque{
+    display: flex;
+}
+.main-left{
+    flex:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 50px - 100px);
+    
+    
+}
+.main-left .table-box{
+    padding: 25px;
+    width: 40vw;
+    height: 90vh;
+    background-color: #333;
+}
+
+.main-right{
+    flex:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 50px - 100px);
+    
+}
+.main-right .square{
+    padding: 25px;
+    background-color: #dddddd;
+    
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    height: 90%;
+    
+    width: 80%;   
+    border-collapse: collapse;
+}
+.main-right .square form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
+.main-right .square form input{
+    margin-bottom: 20px;
+}
+.main-right .square form .form-produto, .main-right .square form .form-codigo, .main-right .square form .form-fornecedor{
+    height: 30px;
+    width: 440px;
+    background:none;
+    border: none;
+    outline: none;
+    border: #333 1px solid;
+    border-radius: 5px;
+}
+.main-right .square .quantiaPreco{
+    display: flex;
+    gap:40px
+}
+.main-right .square .quantiaPreco .form-preco, .main-right .square .quantiaPreco .form-quantidade {
+    height: 30px;
+    width: 200px;
+    background:none;
+    border: none;
+    outline: none;
+    border: #333 1px solid;
+    border-radius: 5px;
+}
+.main-right .square .form-descricao{
+    outline: none;
+    border: none;
+    resize: none;
+    background: none;
+    width: 440px;
+    border: #333 1px solid;
+    
+}
+.main-right .square form .botoes{
+    display: flex;
+    gap:40px;
+    margin-top: 40px;
+}
+.main-right .square form .botoes button{
+    background: none;
+    width: 200px;
+    height: 30px;
+    border: none;
+    border: #333 1px solid;
+    border-radius: 5px;
+}
+
+@media(max-width:750px){
+    .menu nav{
+        display: none;
+    }
+    .menu-mobile{
+        display: flex;
+        cursor: pointer;
+    }
+    .main{
+        height: auto;
+    }
+    .main-estoque{
+        flex-direction: column;
+    }
+}

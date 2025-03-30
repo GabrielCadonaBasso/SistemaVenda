@@ -1,0 +1,227 @@
+*{
+    font-family:Arial;
+    box-sizing: border-box;
+}
+body{
+    
+    margin:0;
+    padding: 0;
+}
+header{
+    height: 100px;
+    background-color: #333;
+    color: white;
+    
+}
+.header{
+    max-width: 1300px;
+    height: 100px;
+    display: flex;
+    margin:auto;
+    align-items: center;
+}
+.container{
+    padding:0 25px;
+    width: 1300px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+
+}
+
+.menu ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu ul li{
+    list-style: none;
+    margin: 0px 10px;
+    
+    
+
+}
+.menu ul li a{
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.menu ul li .active, .menu ul li a:hover{
+    color: #999;
+}
+.menu-mobile{
+    width: 34px;
+    height: 34px;
+    display:none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-mobile .menu-item{
+    height: 6px;
+    width: 34px;
+    background-color: #FFF;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 100px);
+    
+}
+
+.main-estoque{
+    display: flex;
+}
+.main-left{
+    flex:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px);
+    
+    
+}
+.main-left .table-box{
+    padding: 25px;
+    background-color: #dddddd;
+    
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    height: 90%;
+    overflow-y:scroll;
+    width: 80%;   
+    
+}
+.main-left .table-box .pesquisar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    max-width: 600px;
+    width: 100%;
+} 
+.main-left .table-box .pesquisar form{
+    margin-bottom: 20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%;
+}
+.main-left .table-box .pesquisar form input{
+    font-size: 20px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    width: 100%;
+}
+.main-left .table-box .pesquisar form button{
+    border: none;
+    background: none;
+    margin-left: -35px;
+}
+.main-left .table-box .pesquisar form img{
+    height: 20px;
+}
+.main-left .table-box table{
+    border-collapse: collapse;
+    width: 100%;
+    max-height: 100%;
+    text-align: center;
+    
+}
+.main-left table tbody{
+    background-color: #999;
+}
+.main-left table th{
+    border: #333 1px solid;
+    padding: 10px 20px;
+}
+.main-left table td{
+    
+    border: #333 1px solid;
+    
+    padding: 10px 20px;
+}
+table tr:nth-child(even) {
+    background-color: #ffffff; 
+  }
+.main-right{
+    flex:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px);
+    
+}
+.main-right .square{
+    padding: 25px;
+    background-color: #dddddd;
+    
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    height: 90%;
+    
+    width: 80%; 
+      
+
+}
+.main-right .square form{
+    width: 100%;
+    max-height: 100%;
+    text-align: center;
+}
+
+.main-right .square form input{
+   
+}
+.main-right .square form .form-produto, .main-right .square form .form-codigo, .main-right .square form .form-fornecedor{
+   
+}
+.main-right .square .quantiaPreco{
+    
+}
+.main-right .square .quantiaPreco .form-preco, .main-right .square .quantiaPreco .form-quantidade {
+   
+}
+.main-right .square .form-descricao{
+
+    
+}
+.main-right .square form .botoes{
+    
+}
+.main-right .square form .botoes button{
+    
+}
+
+@media(max-width:900px){
+    
+    .main{
+        height: auto;
+    }
+    .main-estoque{
+        flex-direction: column;
+    }
+    .main-left .table-box{
+        margin-top: 10px;
+        height: 60vh;
+        overflow-x:visible;
+        
+    }
+    .main-right .square{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+}
