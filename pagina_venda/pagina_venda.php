@@ -1,3 +1,26 @@
+<?php
+    try {
+        $servidor = "localhost";
+        $usuario = "root";
+        $senha = "";
+        $banco = "SISTEMA";
+
+        $conn = new mysqli($servidor, $usuario, $senha, $banco);
+
+        if ($conn->connect_error) {
+            die("Falha na conexão: " . $conn->connect_error);
+        }
+    } catch (PDOException $e) {
+        echo "Erro na conexão: " . $e->getMessage();
+    }
+
+    session_start();
+
+    if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])){
+        header("Location: ../login_empresas/login_empresas.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -11,7 +34,6 @@
 <body>
     <header>
         <div class="header">
-
             <div class="container">
                 <div class="logo">
                     <h1>Sistema de Vendas</h1>
@@ -22,7 +44,7 @@
                             <li><a class="active" href="">Venda</a></li>
                             <li><a href="">Estoque</a></li>
                             <li><a href="">Cliente</a></li>
-                            <li><a href="">Sair</a></li>
+                            <li><a href="../logout/logout.php">Sair</a></li>
                         </ul>
                     </nav>
                     <div class="menu-mobile">
@@ -46,19 +68,8 @@
                  <a href=""> 
                      Saídas
                  </a>
-                 
-                
-
-
            </div>
-
-        </div>
-        
-
         </div>
     </section>
-
-
 </body>
-
 </html>

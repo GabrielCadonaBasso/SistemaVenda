@@ -53,7 +53,7 @@
                                 $_SESSION['CNPJ_EMP'] = $cnpj;
                                 $_SESSION['SENHA_EMP'] = $senha;
 
-                                header("Location: ../cadastro_funcionarios/cadastro_funcionarios.php");
+                                header("Location: ../pagina_venda/pagina_venda.php");
                             }else{
                                 echo "CNPJ ou Senha Incorretos!";
                             }
