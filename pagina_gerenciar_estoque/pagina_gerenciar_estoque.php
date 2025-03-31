@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-    <title>Login</title>
+    <title>Gerenciar Estoque</title>
 </head>
 
 <body>
@@ -34,7 +34,7 @@
     </header>
     <section class="main">
 
-        
+
         <div class="main-estoque">
 
 
@@ -50,9 +50,9 @@
                             <Button><img src="assets/images/lupa.png"> </Button>
                         </form>
                     </div>
-                    
-    
-                    
+
+
+
                     <table>
                         <thead>
                             <tr>
@@ -60,7 +60,7 @@
                                 <th>Produto</th>
                                 <th>Quantidade</th>
                                 <th></th>
-                                
+
                             </tr>
                         </thead>
                         <tbody>
@@ -70,9 +70,9 @@
                                 <td>Pão de Forma</td>
                                 <td>100</td>
                                 <td>100</td>
-                                
+
                             </tr>
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -81,50 +81,39 @@
                 <div class="square">
                     <h1>Produto</h1>
                     <form>
-                        <label>Produto<br />
-                            <input class="form-produto" placeholder="Produto" name="produto" />
-
-                        </label>
-                        <label>Código<br />
-                            <input class="form-codigo" placeholder="Código do Produto" name="codigo" />
-
-                        </label>
-
-                        <div class="quantiaPreco">
-                            <div class="square-quantia-preco">
-                                <label>Preço<br />
-                                    <input class="form-preco" placeholder="Preço do Produto" name="preco" />
-
-                                </label>
-
+                        <label> Nome do Produto</label>
+                        <input type="text" name="produto" placeholder="Nome do Produto" />
+                        <label>Código do Produto</label>
+                        <input type="number" name="produto" placeholder="Nome do Produto" />
+                        <div class='dual-input'>
+                            <div class="single-input">
+                                <label>Quantidade<br /></label>
+                                <input type="number" name="quantidade" placeholder="Quantidade" />
                             </div>
-                            <div class="square-quantia-preco">
-                                <label>Quantidade<br />
-                                    <input class="form-quantidade" placeholder="Quantidade do Produto"
-                                        name="quantidade" />
-
-                                </label>
-
+                            <div class="single-input">
+                                <label>Fornecedor <br /></label>
+                                <input type="text" name="fornecedor" placeholder="Fornecedor" />
                             </div>
-
-
-
                         </div>
-                        <label>Fornecedor<br />
-                            <input class="form-fornecedor" placeholder="Fornecedor" name="fornecedor" />
-
-                        </label>
-
-                        <label>Descrição<br />
-                            <textarea class="form-descricao" name="descricao">
-
-                        </textarea>
-                        </label>
-                        <div class="botoes">
-                            <button>Salvar</button>
-                            <button>Excluir</button>
-
+                        <div class='dual-input'>
+                            <div class="single-input">
+                                <label>Preço de Custo<br /></label>
+                                <input type="number" name="preco-custo" placeholder="Preço de Custo"step="0.01" />
+                            </div>
+                            <div class="single-input">
+                                <label>Preço de Venda <br /></label>
+                                <input type="text" name="preco-venda" placeholder="Preço de Venda" step="0.01"/>
+                            </div>
                         </div>
+                        <label>Descrição<br /></label>
+                        <textarea placeholder="Descrição"></textarea>
+                        <div class='dual-input'>
+                            <button class="vermelho">Excluir</button>
+                            <button class="verde">Salvar</button>
+                            
+                        </div>
+
+
 
 
 

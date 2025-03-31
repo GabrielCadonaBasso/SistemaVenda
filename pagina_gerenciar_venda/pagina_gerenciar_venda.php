@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-    <title>Gerenciar Vendas</title>
+    <title>Gerenciar Venda</title>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
 
             <div class="container">
                 <div class="logo">
-                    <h1>Gerenciar Vendas</h1>
+                    <h1>Gerenciar Venda</h1>
                 </div>
                 <div class="menu">
                     <nav>
@@ -34,102 +34,83 @@
     </header>
     <section class="main">
 
-        <div class="main-header">
-            <div class=" container">
-                <form>
-                    <input type="search" placeholder="Procurar Produtos" />
-                    <Button><img src="assets/images/lupa.png"> </Button>
-                </form>
 
-            </div>
-
-        </div>
         <div class="main-estoque">
+
             <div class="main-right">
                 <div class="square">
                     <h1>Produto</h1>
                     <form>
-                        <label>Produto<br/>
-                            <input class="form-produto" placeholder="Produto" name="produto"/>
-
-                        </label> 
-                        <label>Código<br/>
-                            <input class="form-codigo" placeholder="Código do Produto" name="codigo"/>
-
-                        </label>
-
-                        <div class="quantiaPreco">
-                            <div class="square-quantia-preco">
-                                <label>Preço<br/>
-                                    <input class="form-preco" placeholder="Preço do Produto" name="preco"/>
-        
-                                </label>
-
+                        <label> Nome do Produto</label>
+                        <input type="text" name="produto" placeholder="Nome do Produto" />
+                        <label>Código do Produto</label>
+                        <input type="number" name="produto" placeholder="Código do Produto" />
+                        <div class='dual-input'>
+                            <div class="single-input">
+                                <label>Quantidade<br /></label>
+                                <input type="number" name="quantidade" placeholder="Quantidade" />
                             </div>
-                            <div class="square-quantia-preco">
-                                <label>Quantidade<br/>
-                                    <input class="form-quantidade" placeholder="Quantidade do Produto" name="quantidade"/>
-        
-                                </label>
-
+                            <div class="single-input">
+                                <label>Preço de Venda <br /></label>
+                                <input type="text" name="preco-venda" placeholder="Preço de Venda" step="0.01"/>
                             </div>
-                           
-                            
-
                         </div>
-                        <label>Fornecedor<br/>
-                            <input class="form-fornecedor" placeholder="Fornecedor" name="fornecedor"/>
-
-                        </label>
-
-                        <label>Descrição<br/>
-                        <textarea class="form-descricao" name="descricao" >
-                            
-                        </textarea>
-                        </label>
-                        <div class="botoes">
-                            <button>Adicionar</button>
-                            <button>Cancelar</button>
+                       
+                        <label>Descrição<br /></label>
+                        <textarea placeholder="Descrição"></textarea>
+                        <div class='dual-input'>
+                            <button class="vermelho">Excluir</button>
+                            <button class="verde">Adicionar</button>
                             
                         </div>
-                        
-                       
-                       
-                        
+
+
+
+
+
+
 
                     </form>
                 </div>
 
             </div>
             <div class="main-left">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Produto</th>
-                            <th>Quantidade</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>000001</td>
-                            <td>Pão de Forma</td>
-                            <td>100</td>
-                            <td>100</td>
-                            <td>100</td>
-                        </tr>
-                        <tr>
-                            <td>000001</td>
-                            <td>Pão de Forma</td>
-                            <td>100</td>
-                            <td>100</td>
-                            <td>100</td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
+                <div class='table-box'>
+                    
+                        <h1>Compra</h1>
+                    
+
+
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Produto</th>
+                                <th>Quantidade</th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- aqui vai ter um while ou for do php -->
+                            <tr>
+                                <td>0001</td>
+                                <td>Pão de Forma</td>
+                                <td>100</td>
+                                <td>100</td>
+
+                            </tr>
+                           
+
+                        </tbody>
+                    </table>
+                    <div class='dual-input'>
+                            <button class="vermelho">Cancelar</button>
+                            <button class="verde">Finalizar</button>
+                            
+                    </div>
+                </div>
             </div>
 
 
