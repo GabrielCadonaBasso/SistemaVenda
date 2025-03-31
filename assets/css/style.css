@@ -45,7 +45,7 @@ body{
     outline:none;
     
 }
-.square button{
+.square button, .botao_link{
     border: none;
     background-color: #ccc;
     padding: 10px;
@@ -53,16 +53,15 @@ body{
     width: 100px;
     border-radius: 20px;
     margin-left: 10px;
-}
-.square a{
-    color: #666;
-    font-size: 15px;
+    text-decoration: none;
+    color: #FFF;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
 }
 
-.square a:hover{
-    color: #333;
-    
-}
+
+
 
 .DivDoisBotoes {
     display: flex;

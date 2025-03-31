@@ -13,6 +13,12 @@
     } catch (PDOException $e) {
         echo "Erro na conexão: " . $e->getMessage();
     }
+
+    session_start();
+     
+    if (isset($_SESSION['CNPJ_EMP']) && isset($_SESSION['SENHA_EMP'])){
+        header("Location: ../pagina_venda/pagina_venda.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +37,7 @@
                 <input type="password" name="senha" placeholder="Senha" required/>
                 <div class="DivDoisBotoes">
                     <button type="submit">Login</button>
-                    <button type="button">Cancelar</button>    
+                    <a class="botao_link" href="../cadastro_empresas/cadastro_empresas.php">Cadastrar</a>   
                 </div>
             </form>
             <p>
@@ -48,12 +54,10 @@
 
                             if ($quant_retorno == 1){
 
-                                session_start();
-
                                 $_SESSION['CNPJ_EMP'] = $cnpj;
                                 $_SESSION['SENHA_EMP'] = $senha;
 
-                                header("Location: ../cadastro_funcionarios/cadastro_funcionarios.php");
+                                header("Location: ../pagina_venda/pagina_venda.php");
                             }else{
                                 echo "CNPJ ou Senha Incorretos!";
                             }
