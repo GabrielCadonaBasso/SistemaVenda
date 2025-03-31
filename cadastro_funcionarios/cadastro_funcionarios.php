@@ -24,6 +24,7 @@
 </head>
 <body>
     <div class="tela">
+        <a>
         <div class="square">
             <h1>Cadastro de Funcionários</h1>
             <form action="" method="post"  >
@@ -32,7 +33,7 @@
                 <input type="text" name="cnpjempresa" placeholder="CNPJ da Empresa" required/>
                 <div class="DivDoisBotoes">
                     <button type="submit">Cadastrar</button>
-                    <button type="button">Cancelar</button>    
+                    <button type="button">Voltar</button>    
                 </div>
             </form>
             <p>

@@ -21,7 +21,7 @@
                         <ul>
                             <li><a  href="">Venda</a></li>
                             <li><a class="active" href="">Estoque</a></li>
-                            <li><a href="">Cliente</a></li>
+                            <li><a href="">Pessoas</a></li>
                             <li><a href="">Sair</a></li>
                         </ul>
                     </nav>

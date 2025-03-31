@@ -43,7 +43,7 @@
                         <ul>
                             <li><a class="active" href="">Venda</a></li>
                             <li><a href="">Estoque</a></li>
-                            <li><a href="">Cliente</a></li>
+                            <li><a href="">Pessoas</a></li>
                             <li><a href="../logout/logout.php">Sair</a></li>
                         </ul>
                     </nav>

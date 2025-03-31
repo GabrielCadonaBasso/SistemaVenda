@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-    <title>Login</title>
+    <title>Pessoas</title>
 </head>
 
 <body>
@@ -21,7 +21,7 @@
                         <ul>
                             <li><a  href="">Venda</a></li>
                             <li><a  href="">Estoque</a></li>
-                            <li><a class="active" href="">Cliente</a></li>
+                            <li><a class="active" href="">Pessoas</a></li>
                             <li><a href="">Sair</a></li>
                         </ul>
                     </nav>
@@ -38,10 +38,10 @@
         <div class="container">
            <div class="botoes">
                 <a href=""> 
-                   Gerenciar Clietes
+                   Cadastrar Cliente
                 </a>
                 <a href=""> 
-                    Débitos dos Clientes
+                    Cadastrar Funcionário
                  </a>
                 
                 

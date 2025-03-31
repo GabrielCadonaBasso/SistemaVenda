@@ -15,49 +15,48 @@
     }
 ?>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Empresas</title>
+    <title>Cadastro de Clientes</title>
     <link rel="stylesheet" href="../assets/css/style.css"/>
 </head>
 <body>
     <div class="tela">
+        <a>
         <div class="square">
-            <h1>Cadastro de Empresas</h1>
+            <h1>Cadastro de Clientes</h1>
             <form action="" method="post"  >
                 <input type="text" name="nome" placeholder="Nome" required/>
-                <input type="text" name="cnpj" placeholder="CNPJ" required/>
-                <input type="email" name="email" placeholder="Email" required/>
-                <input type="password" name="senha" placeholder="Senha" required/>
+                <input type="text" name="cpf" placeholder="CPF" required/>
+                <input type="text" name="cnpjempresa" placeholder="CNPJ da Empresa" required/>
                 <div class="DivDoisBotoes">
-                    <button type="submit" name="cadastrar">Cadastrar</button>
-                    <a class="botao_link" href="../login_empresas/login_empresas.php">Login</a>    
+                    <button type="submit">Cadastrar</button>
+                    <button type="button">Voltar</button>    
                 </div>
             </form>
             <p>
                 <?php
-                    if (isset($_POST['cadastrar'])) {
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $nome = $_POST['nome'];
-                        $cnpj = $_POST['cnpj'];
-                        $email = $_POST['email'];
-                        $senha = $_POST['senha'];
+                        $cpf = $_POST['cpf'];
+                        $cnpj_empresa = $_POST['cnpjempresa'];
 
-                        if (!empty($cnpj) && !empty($senha)) {
-                            $query = "SELECT * FROM empresas WHERE CNPJ_EMP = '$cnpj'";
+                        if (!empty($nome) && !empty($cpf) && !empty($cnpj_empresa)) {
+                            $query = "SELECT * FROM funcionarios WHERE CPF_FUNC = '$cpf'";
                             $result = mysqli_query($conn, $query);
 
                             $quant_retorno = $result->num_rows;
 
                             if ($quant_retorno == 1){
-                                echo "Usuário Já Cadastrado!";
+                                echo "Funcionário Já Cadastrado!";
                             }else{
-                                $query = "INSERT INTO empresas (NOME_EMP, CNPJ_EMP, EMAIL_EMP, SENHA_EMP) VALUES('$nome', '$cnpj', '$email', '$senha')";
+                                $query = "INSERT INTO funcionarios (CPF_FUNC, NOME_FUNC, EMPRESAS_CNPJ_EMP) VALUES('$cpf', '$nome', '$cnpj_empresa')";
 
                                 $result = mysqli_query($conn, $query);
 
-                                echo "Usuário Cadastrado com Sucesso!"; 
+                                echo "Funcionário Cadastrado com Sucesso!"; 
                             }
                             mysqli_close($conn);
                         }
