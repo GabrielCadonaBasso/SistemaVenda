@@ -13,6 +13,12 @@
     } catch (PDOException $e) {
         echo "Erro na conexão: " . $e->getMessage();
     }
+
+    session_start();
+     
+    if (isset($_SESSION['CNPJ_EMP']) && isset($_SESSION['SENHA_EMP'])){
+        header("Location: ../pagina_venda/pagina_venda.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,8 +53,6 @@
                             $quant_retorno = $result->num_rows;
 
                             if ($quant_retorno == 1){
-
-                                session_start();
 
                                 $_SESSION['CNPJ_EMP'] = $cnpj;
                                 $_SESSION['SENHA_EMP'] = $senha;
