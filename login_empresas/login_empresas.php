@@ -31,7 +31,7 @@
                 <input type="password" name="senha" placeholder="Senha" required/>
                 <div class="DivDoisBotoes">
                     <button type="submit">Login</button>
-                    <button type="button">Cancelar</button>    
+                    <a class="botao_link" href="../cadastro_empresas/cadastro_empresas.php">Cadastrar</a>   
                 </div>
             </form>
             <p>

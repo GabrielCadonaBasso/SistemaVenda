@@ -33,7 +33,7 @@
                 <input type="password" name="senha" placeholder="Senha" required/>
                 <div class="DivDoisBotoes">
                     <button type="submit" name="cadastrar">Cadastrar</button>
-                    <a class="botao_login" href="../login_empresas/login_empresas.php">Login</a>    
+                    <a class="botao_link" href="../login_empresas/login_empresas.php">Login</a>    
                 </div>
             </form>
             <p>
@@ -61,8 +61,6 @@
                             }
                             mysqli_close($conn);
                         }
-                    }else if (isset($_POST['login'])){
-                        header("location: ../login_empresas/login_empresas.php");
                     }
                 ?>
             </p>
