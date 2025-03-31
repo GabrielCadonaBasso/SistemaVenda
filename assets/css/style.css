@@ -45,7 +45,7 @@ body{
     outline:none;
     
 }
-.square button{
+.square button, .botao_login{
     border: none;
     background-color: #ccc;
     padding: 10px;

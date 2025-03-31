@@ -32,13 +32,13 @@
                 <input type="email" name="email" placeholder="Email" required/>
                 <input type="password" name="senha" placeholder="Senha" required/>
                 <div class="DivDoisBotoes">
-                    <button type="submit">Cadastrar</button>
-                    <button type="button">Cancelar</button>    
+                    <button type="submit" name="cadastrar">Cadastrar</button>
+                    <a class="botao_login" href="../login_empresas/login_empresas.php">Login</a>    
                 </div>
             </form>
             <p>
                 <?php
-                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    if (isset($_POST['cadastrar'])) {
                         $nome = $_POST['nome'];
                         $cnpj = $_POST['cnpj'];
                         $email = $_POST['email'];
@@ -61,6 +61,8 @@
                             }
                             mysqli_close($conn);
                         }
+                    }else if (isset($_POST['login'])){
+                        header("location: ../login_empresas/login_empresas.php");
                     }
                 ?>
             </p>
