@@ -1,0 +1,95 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background-image: url('../images/image_fx.jpg');
+    background-size: cover;
+    
+}
+
+
+
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+.main .main-square{
+    display: flex;
+    padding: 25px;
+    
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.8);
+    max-width: 400px;
+    width: 100%;
+    max-height: 500px;
+    height:100%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px black;
+    margin:10px;
+    
+}
+.main .main-square p a{
+    color: rgb(0, 140, 255);
+}
+.main .main-square .logo{
+    max-height: 600px;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+}
+.main .main-square .logo img{
+    height: 120px;
+    object-fit: cover;
+    
+    
+}
+.main .main-square .formulario form{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    margin-bottom: 50px;
+}
+.main .main-square .formulario form input{
+    border: none;
+    background: none;
+    padding: 15px;
+    outline: none;
+    box-shadow: 0px 0px 0.8px black;
+    font-size: 15px;
+    border-radius: 2px;
+    
+
+}
+.main .main-square .formulario form .DoisBotoes{
+    display: inline-flex;
+    justify-content: center;
+    gap:10px;
+}
+.main .main-square .formulario form button, .main .main-square .formulario form  a {
+    background-color: rgb(41, 41, 253);
+    border: none;
+    padding: 10px;
+    color:white;
+    font-size: 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    flex:1;
+    text-align: center;
+}
+.main .main-square .formulario form button:hover{
+    opacity: 0.8;
+}
+.main .main-square .formulario form a:hover{
+    opacity: 0.8;
+}
