@@ -19,10 +19,9 @@
                 <div class="menu">
                     <nav>
                         <ul>
-                            <li><a  href="">Venda</a></li>
-                            <li><a  href="">Estoque</a></li>
-                            <li><a class="active" href="">Pessoas</a></li>
-                            <li><a href="">Sair</a></li>
+                        <li><a class="active" href="../pagina_venda/pagina_venda.php">Venda</a></li>
+                            <li><a  href="../pagina_estoque/pagina_estoque.php">Estoque</a></li>
+                            <li><a href="../pagina_pessoas/pagina_pessoas.php">Pessoas</a></li>
                         </ul>
                     </nav>
                     <div class="menu-mobile">

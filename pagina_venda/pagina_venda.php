@@ -41,9 +41,9 @@ if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
                 <div class="menu">
                     <nav>
                         <ul>
-                            <li><a class="active" href="">Venda</a></li>
-                            <li><a href="">Estoque</a></li>
-                            <li><a href="">Pessoas</a></li>
+                        <li><a  class="active" href="../pagina_venda/pagina_venda.php">Venda</a></li>
+                            <li><a  href="../pagina_estoque/pagina_estoque.php">Estoque</a></li>
+                            <li><a href="../pagina_pessoas/pagina_pessoas.php">Pessoas</a></li>
                             <li><a href="../logout/logout.php"><img src='assets/imagens/sair.png' /></a></li>
                         </ul>
                     </nav>
@@ -59,7 +59,7 @@ if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
     <section class="main">
         <div class="container">
             <div class="area">
-                <div class="left-side">
+                
                     <div class="square">
                         <form>
                             <label> Nome do Produto</label>
@@ -88,13 +88,7 @@ if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
                     </div>
 
 
-                </div>
-                <div class="right-side">
-                    <div class="square">
-
-
-                    </div>
-                </div>
+              
             </div>
 
         </div>

@@ -18,11 +18,11 @@
                 </div>
                 <div class="menu">
                     <nav>
-                        <ul>
-                            <li><a  href="">Venda</a></li>
-                            <li><a  href="">Estoque</a></li>
-                            <li><a class="active" href="">Pessoas</a></li>
-                            <li><a href="../logout/logout.php"><img src ='assets/imagens/sair.png'/></a></li>
+                    <ul>
+                        <li><a  href="../pagina_venda/pagina_venda.php">Venda</a></li>
+                            <li><a  href="../pagina_estoque/pagina_estoque.php">Estoque</a></li>
+                            <li><a  class="active" href="../pagina_pessoas/pagina_pessoas.php">Pessoas</a></li>
+                            <li><a href="../logout/logout.php"><img src='assets/imagens/sair.png' /></a></li>
                         </ul>
                     </nav>
                     <div class="menu-mobile">
