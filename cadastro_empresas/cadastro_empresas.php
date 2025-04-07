@@ -37,14 +37,15 @@ try {
                         <input type="email" name="email" placeholder="Email" required />
                         <input type="password" name="senha" placeholder="Senha" required />
                         <div class="DoisBotoes">
-                            <button type="submit" name="cadastrar">Cadastrar</button>
                             <a class="botao_link" href="../login_empresas/login_empresas.php">Voltar</a>
+                            <button type="submit" name="cadastrar">Cadastrar</button>
+                            
                         </div>
                     </form>
 
                 </div>
-            </div>
-            <p>
+
+                <p class="notificacao">
                 <?php
                 if (isset($_POST['cadastrar'])) {
                     $nome = $_POST['nome'];
@@ -74,6 +75,8 @@ try {
                 }
                 ?>
             </p>
+            </div>
+            
         </div>
             
 

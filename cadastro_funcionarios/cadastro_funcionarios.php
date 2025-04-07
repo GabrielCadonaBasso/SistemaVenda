@@ -24,7 +24,7 @@
 </head>
 <body>
     <div class="tela">
-        <a>
+        
         <div class="square">
             <h1>Cadastro de Funcionários</h1>
             <form action="" method="post"  >

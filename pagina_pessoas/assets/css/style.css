@@ -9,7 +9,7 @@ body{
 }
 header{
     height: 100px;
-    background-color: #333;
+    background-color:#26719c;
     color: white;
     
 }
@@ -28,7 +28,19 @@ header{
     align-items: center;
 }
 .logo{
-
+    height: 95px;
+    width: auto;
+    
+}
+.logo img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95px;
+    padding: 5px;
+    object-fit: cover;
+    
+    
 }
 
 .menu ul{
@@ -48,8 +60,14 @@ header{
     text-decoration: none;
     text-transform: uppercase;
 }
+.menu ul li a img{
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .menu ul li .active, .menu ul li a:hover{
-    color: #999;
+    opacity: 0.5;
 }
 .menu-mobile{
     width: 34px;

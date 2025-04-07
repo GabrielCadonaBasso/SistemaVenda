@@ -39,6 +39,9 @@ body{
 .main .main-square p a{
     color: rgb(0, 140, 255);
 }
+.main .main-square .notificacao{
+    color: red;
+}
 .main .main-square .logo{
     max-height: 600px;
     height: 100%;

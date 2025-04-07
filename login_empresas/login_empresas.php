@@ -44,36 +44,38 @@ if (isset($_SESSION['CNPJ_EMP']) && isset($_SESSION['SENHA_EMP'])) {
                     <p>Não tem uma conta? <a href="../cadastro_empresas/cadastro_empresas.php">Cadastre-se aqui!</a></p>
                 </div>
             </div>
-        </div>
-        <p>
-        <?php
-                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        $cnpj = $_POST['cnpj'];
-                        $senha = $_POST['senha'];
+            <p class="notificacao">
+                <?php
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $cnpj = $_POST['cnpj'];
+                    $senha = $_POST['senha'];
 
-                        if (!empty($cnpj) && !empty($senha)) {
-                            $query = "SELECT * FROM empresas WHERE CNPJ_EMP = '$cnpj' AND SENHA_EMP = '$senha'";
-                            $result = mysqli_query($conn, $query);
+                    if (!empty($cnpj) && !empty($senha)) {
+                        $query = "SELECT * FROM empresas WHERE CNPJ_EMP = '$cnpj' AND SENHA_EMP = '$senha'";
+                        $result = mysqli_query($conn, $query);
 
-                            $quant_retorno = $result->num_rows;
+                        $quant_retorno = $result->num_rows;
 
-                            if ($quant_retorno == 1){
+                        if ($quant_retorno == 1) {
 
-                                $_SESSION['CNPJ_EMP'] = $cnpj;
-                                $_SESSION['SENHA_EMP'] = $senha;
+                            $_SESSION['CNPJ_EMP'] = $cnpj;
+                            $_SESSION['SENHA_EMP'] = $senha;
 
-                                header("Location: ../pagina_venda/pagina_venda.php");
-                            }else{
-                                echo "CNPJ ou Senha Incorretos!";
-                            }
-                            mysqli_close($conn);
+                            header("Location: ../pagina_venda/pagina_venda.php");
+                        } else {
+                            echo "CNPJ ou Senha Incorretos!";
                         }
+                        mysqli_close($conn);
                     }
+                }
                 ?>
-        </p>
-    
+            </p>
+        </div>
+
+
     </div>
 
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
