@@ -3,13 +3,19 @@
     box-sizing: border-box;
 }
 body{
-    
+  
     margin:0;
     padding: 0;
+    background-color: #e4e4e4;
 }
+
+
+
 header{
     height: 100px;
-    background-color:#26719c;
+    background-image: url("../imagens/image_fx.jpg");
+    background-size: cover;
+    background-color: #26719c;
     color: white;
     
 }
@@ -19,6 +25,7 @@ header{
     display: flex;
     margin:auto;
     align-items: center;
+    
 }
 .container{
     padding:0 25px;
@@ -42,7 +49,6 @@ header{
     
     
 }
-
 .menu ul{
     display: flex;
     justify-content: center;
@@ -83,52 +89,175 @@ header{
     background-color: #FFF;
 }
 
-.main{
+.main, .area{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 100px)
+    height: calc(100vh - 100px);
+    width:100%;
 }
-.main .main-left{
-    flex:1
-}
-.main .main-right{
-    flex:1
-}
-.main .botoes {
-    padding: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    gap:15px;
 
-}
-.botoes a{
-    padding: 60px 15px;
-    background-color: #666;
-    color: #FFF;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 25px;
-    border-radius: 5px;
-    max-width: 400px;
+.square {
     width: 100%;
-    box-shadow: 0px 0px 5px black;
-    text-align: center;
+    height: 90%;
+    padding: 10px;
+    box-shadow: 25px 15px 0px rgba(255,255,255, 0.5);
+    background-color: #FFF;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
     
 }
-.botoes a:hover{
-    opacity: 0.8;
+.square h1{
+    font-size: 30px;
+}
+/* LADO ESQUERDO */
+.square .left{
+    flex:3;
+    margin: 15px;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    
+}
+
+.square .left .form-procurar{
+    display: flex;
+    width: 100%;
+}
+.square .left .form-procurar input{
+    outline: none;
+    border: none;
+    border: 1px solid black;
+    border-radius: 23px;
+    padding: 10px 5px;
+    width: 100%;
+    font-size: 20px;
+}
+.square .left .form-procurar button{
+    width: 20px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    margin-left:-30px ;
+    cursor:pointer;
+    
+}
+.square .left .form-procurar button:hover{
+    opacity: 0.5;
+}
+.square .left .form-procurar button img{
+    width: 20px;
+    height: 20px;
+    
 }
 
 
 
+/* Tabela */
+
+.square .left table{
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    font-size: 18px;
+}
+.square .left table tr td{
+    text-align: center;
+    border: 1px solid black;
+    padding: 5px;
+   
+}
+.square .left table tr td button{
+    background:none;
+    border: none;
+    padding: 0;
+    border: 1px solid black;
+    font-size: 20px;
+    border-radius: 50px;
+    width: 25px;
+    height: 25px;
+    
+    
+    
+    cursor: pointer;
+}
+.square .left table tr td button:hover{
+   opacity: 0.5;
+}
 
 
+/* LADO DIREITO */
+.square .right{
+    flex: 2;
+    margin: 15px;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.square .right .form-produto{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin:-18.4px;
+}
+.square .right .form-produto input{
+    font-size: 20px;
+    border: none;
+    outline: none;
+    padding: 10px 10px;
+    border-radius: 20px;
+    border: 1px solid black;
+    margin-bottom: 25px;
+    width: 100%;
+}
+.square .right .form-produto .preco-quantia{
+    display: flex;
+    width: 100%;
+    min-width: 100%;
+    gap:10px;
+}
+.square .right .form-produto .preco, .square .right .form-produto .quantia{
+    width: 100%;
+}
+.square .right .form-produto .preco-quantia button{
+    background:none;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    
+    
 
+}
+.square .right .form-produto .preco-quantia button:hover{
+   opacity: 0.5;
+    
+
+}
+.square .right .form-produto .preco-quantia  .verde{
+    background-color: #3a6c67;
+    color:white;
+}
+.square .right .form-produto .preco-quantia  .laranja{
+    background-color: #dea262;
+    color:white;
+}
 
 @media(max-width:750px){
     .menu nav{
@@ -138,8 +267,15 @@ header{
         display: flex;
         cursor: pointer;
     }
-    .main{
+    .main, .area{
         height: auto;
     }
+    .square{
+        flex-direction: column;
+    }
+    .square .left, .square .right{
+        width: 100%;
+    }
+
 }
 

@@ -28,7 +28,7 @@ if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-    <title>Pessoas</title>
+    <title>Venda</title>
 </head>
 
 <body>
@@ -41,10 +41,8 @@ if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
                 <div class="menu">
                     <nav>
                         <ul>
-                            <li><a href="../pagina_venda/pagina_venda.php">Venda</a></li>
-                            <li><a href="../pagina_estoque/pagina_estoque.php">Estoque</a></li>
-                            <li><a class="active" href="../pagina_pessoas/pagina_pessoas.php">Pessoas</a></li>
-                            <li><a href="../logout/logout.php"><img src='assets/imagens/sair.png' /></a></li>
+                            <li><a href="../pagina_venda.php">Voltar</a></li>
+
                         </ul>
                     </nav>
                     <div class="menu-mobile">
@@ -61,11 +59,29 @@ if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
             <div class="area">
 
                 <div class="square">
-                    <div class="left">
+                    <div class="procurar-tabela">
+                        <h1>Busca de Cliente</h1>
+                        <form class="form-cliente">
+                            <div class="procurar-cliente">
+                                <input type="text" name="nome-cliente" placeholder="Procure o Nome do Cliente..." />
+                                <button><img src="assets/imagens/lupa.png" /></button>
+                            </div>
 
+                        </form>
+
+                        <table>
+                            <tr>
+                                <td>Carlos</td>
+                                <td> 0002222</td>
+                                <td><button>+</button></td>
+                            </tr>
+                            
+                           
+                        </table>
                     </div>
-                    <div class="right">
-                    </div>
+
+
+
                 </div>
 
 

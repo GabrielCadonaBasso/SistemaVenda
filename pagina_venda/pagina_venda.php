@@ -41,8 +41,8 @@ if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
                 <div class="menu">
                     <nav>
                         <ul>
-                        <li><a  class="active" href="../pagina_venda/pagina_venda.php">Venda</a></li>
-                            <li><a  href="../pagina_estoque/pagina_estoque.php">Estoque</a></li>
+                            <li><a class="active" href="../pagina_venda/pagina_venda.php">Venda</a></li>
+                            <li><a href="../pagina_estoque/pagina_estoque.php">Estoque</a></li>
                             <li><a href="../pagina_pessoas/pagina_pessoas.php">Pessoas</a></li>
                             <li><a href="../logout/logout.php"><img src='assets/imagens/sair.png' /></a></li>
                         </ul>
@@ -59,36 +59,44 @@ if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
     <section class="main">
         <div class="container">
             <div class="area">
-                
-                    <div class="square">
-                        <form>
-                            <label> Nome do Produto</label>
-                            <input type="text" name="produto" placeholder="Nome do Produto" />
-                            <label>Código do Produto</label>
-                            <input type="number" name="produto" placeholder="Código do Produto" />
-                            <div class='dual-input'>
-                                <div class="single-input">
-                                    <label>Quantidade<br /></label>
-                                    <input type="number" name="quantidade" placeholder="Quantidade" />
-                                </div>
-                                <div class="single-input">
-                                    <label>Preço de Venda <br /></label>
-                                    <input type="text" name="preco-venda" placeholder="Preço de Venda" step="0.01" />
-                                </div>
-                            </div>
 
-                            <label>Descrição<br /></label>
-                            <textarea placeholder="Descrição"></textarea>
-                            <div class='dual-input'>
-                                <button class="vermelho">Excluir</button>
-                                <button class="verde">Adicionar</button>
+                <div class="square">
+                    <div class="left">
+                        <h1>Dados</h1>
+                        <div class="dados-pessoas">
+                            <div class="select-colaborador">
+                                <label>Colaborador</label>
+                                <select>
+                                    <option>Selcione o Colaborador</option>
+                                    <option>Lucas</option>
+                                </select>
 
                             </div>
-                        </form>
+
+                            <form class="form-cliente" method="get" action="pagina_venda_cliente/pagina_venda_cliente.php">
+                                <label>Cliente</label>
+                                <div class="procurar-cliente">
+                                    <input type="text" name="cliente" placeholder="Nome do cliente" />
+                                    <button><img src="assets/imagens/lupa.png" /></button>
+                                </div>
+
+
+                            </form>
+
+
+
+                        </div>
+
+                        <h1>Produto</h1>
+                        
                     </div>
+                    <div class="right">
+                        <h1>Venda</h1>
+                    </div>
+                </div>
 
 
-              
+
             </div>
 
         </div>
