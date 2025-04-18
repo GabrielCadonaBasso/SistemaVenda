@@ -19,7 +19,6 @@ session_start();
 if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
     header("Location: ../login_empresas/login_empresas.php");
 }
-ob_start();
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +28,7 @@ ob_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-    <title>Estoque</title>
+    <title>Pessoas</title>
 </head>
 
 <body>
@@ -41,12 +40,19 @@ ob_start();
                 </div>
                 <div class="menu">
                     <nav>
+                        <div class="grupo-botoes">
+                            <p>Pessoas</p>
+                            <ul>
+                            <li><a href="../pagina_pessoas.php">Clientes</a></li>
+                            <li><a href="../pagina_funcionarios/pagina_funcionarios.php">Funcionários</a></li>
+
+
+                            </ul>
+                        </div>
+
                         <ul>
-                            <li><a href="../pagina_venda/pagina_venda.php">Venda</a></li>
-                            <li><a class="active" href="../pagina_estoque/pagina_estoque.php">Estoque</a></li>
-                            <li><a href="../pagina_pessoas/pagina_pessoas.php">Pessoas</a></li>
+                            <li><a href="../../pagina_venda/pagina_venda.php">Voltar</a></li>
                             <li><a href="../logout/logout.php"><img src='assets/imagens/sair.png' /></a></li>
-                            
                         </ul>
                     </nav>
                     <div class="menu-mobile">
@@ -61,8 +67,7 @@ ob_start();
     <section class="main">
         <div class="container">
             <div class="area">
-
-                <div class="square">
+            <div class="square">
                     <div class="left">
                         <h1>Consulta</h1>
                         <form class="form-procurar" method="get">
@@ -113,7 +118,7 @@ ob_start();
                     </div>
 
                     <div class="right">
-                        <h1>Produto</h1>
+                        <h1>Funcionário</h1>
                         <form class="form-produto" method="POST">
 
                             <input type="hidden" name="id-produto" id="id-produto" value="-1" />
@@ -214,8 +219,9 @@ ob_start();
             </div>
 
         </div>
+
+        </div>
     </section>
-    <script src="assets/js/script.js"></script>
 </body>
 
 </html>

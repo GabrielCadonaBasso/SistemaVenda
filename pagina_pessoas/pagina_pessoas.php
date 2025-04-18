@@ -40,10 +40,18 @@ if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
                 </div>
                 <div class="menu">
                     <nav>
+                        <div class="grupo-botoes">
+                            <p>Pessoas</p>
+                            <ul>
+                                <li><a href="../pagina_pessoas/pagina_pessoas.php">Clientes</a></li>
+                                <li><a href="../pagina_pessoas/pagina_funcionarios/pagina_funcionarios.php">Funcionários</a></li>
+
+
+                            </ul>
+                        </div>
+
                         <ul>
-                            <li><a href="../pagina_venda/pagina_venda.php">Venda</a></li>
-                            <li><a href="../pagina_estoque/pagina_estoque.php">Estoque</a></li>
-                            <li><a class="active" href="../pagina_pessoas/pagina_pessoas.php">Pessoas</a></li>
+                            <li><a href="../pagina_venda/pagina_venda.php">Voltar</a></li>
                             <li><a href="../logout/logout.php"><img src='assets/imagens/sair.png' /></a></li>
                         </ul>
                     </nav>
