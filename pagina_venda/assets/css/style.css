@@ -270,15 +270,23 @@ header {
 
 
 @media(max-width:750px) {
-    .menu nav {
+    /* .menu nav {
         display: none;
     }
 
     .menu-mobile {
         display: flex;
         cursor: pointer;
+    } */
+    .main, .area{
+        height: auto;
     }
-
+    .square{
+        flex-direction: column;
+    }
+    .square .left, .square .right{
+        width: 100%;
+    }
     .main {
         height: auto;
     }

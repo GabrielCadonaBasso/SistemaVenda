@@ -260,13 +260,13 @@ header{
 }
 
 @media(max-width:750px){
-    .menu nav{
+    /* .menu nav{
         display: none;
     }
     .menu-mobile{
         display: flex;
         cursor: pointer;
-    }
+    } */
     .main, .area{
         height: auto;
     }

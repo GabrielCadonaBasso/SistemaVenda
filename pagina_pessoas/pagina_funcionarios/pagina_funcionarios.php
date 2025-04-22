@@ -44,7 +44,7 @@ if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
                             <p>Pessoas</p>
                             <ul>
                             <li><a href="../pagina_pessoas.php">Clientes</a></li>
-                            <li><a href="../pagina_funcionarios/pagina_funcionarios.php">Funcionários</a></li>
+                            <li><a class="active" href="../pagina_funcionarios/pagina_funcionarios.php">Funcionários</a></li>
 
 
                             </ul>
@@ -222,6 +222,7 @@ if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
 
         </div>
     </section>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>

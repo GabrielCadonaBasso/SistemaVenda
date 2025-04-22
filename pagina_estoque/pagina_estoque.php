@@ -178,7 +178,7 @@ ob_start();
                                 $sql = "INSERT INTO produtos (CODIGO_PROD, NOME_PROD, FORNECEDOR_PROD, QUANTIDADE_PROD, PRECO_PROD) VALUES ('$codigo', '$produto', '$fornecedor', '$quantidade', '$preco')";
 
                                 if ($conn->query($sql) === TRUE) {
-                                    echo "deu certo esssa merda";
+                                    
                                     header("Location: " . $_SERVER['PHP_SELF']);
                                     exit;
                                 } else {
