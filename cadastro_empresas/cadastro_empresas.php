@@ -1,18 +1,11 @@
 <?php
-try {
-    $servidor = "localhost";
-    $usuario = "root";
-    $senha = "";
-    $banco = "SISTEMA";
+    include "../conexao.php";
+    session_start();
 
-    $conn = new mysqli($servidor, $usuario, $senha, $banco);
-
-    if ($conn->connect_error) {
-        die("Falha na conexão: " . $conn->connect_error);
+    if (isset($_SESSION['CNPJ_EMP']) && isset($_SESSION['SENHA_EMP'])) {
+        header("Location: ../pagina_venda/pagina_venda.php");
     }
-} catch (PDOException $e) {
-    echo "Erro na conexão: " . $e->getMessage();
-}
+    ob_start();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -66,13 +59,17 @@ try {
 
                             $result = mysqli_query($conn, $query);
 
-                            echo "Usuário Cadastrado com Sucesso!";
+
+
+                            
+                            header("location: ../login_empresas/login_empresas.php");
                             
                             
                         }
                         mysqli_close($conn);
                     }
                 }
+                ob_end_flush();
                 ?>
             </p>
             </div>

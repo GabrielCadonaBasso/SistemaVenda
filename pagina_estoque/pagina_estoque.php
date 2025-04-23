@@ -1,24 +1,6 @@
 <?php
-try {
-    $servidor = "localhost";
-    $usuario = "root";
-    $senha = "";
-    $banco = "SISTEMA";
-
-    $conn = new mysqli($servidor, $usuario, $senha, $banco);
-
-    if ($conn->connect_error) {
-        die("Falha na conexão: " . $conn->connect_error);
-    }
-} catch (PDOException $e) {
-    echo "Erro na conexão: " . $e->getMessage();
-}
-
-session_start();
-
-if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
-    header("Location: ../login_empresas/login_empresas.php");
-}
+include "../conexao.php";
+include "../verifica_sessao.php";
 ob_start();
 ?>
 
@@ -46,7 +28,7 @@ ob_start();
                             <li><a class="active" href="../pagina_estoque/pagina_estoque.php">Estoque</a></li>
                             <li><a href="../pagina_pessoas/pagina_pessoas.php">Pessoas</a></li>
                             <li><a href="../logout/logout.php"><img src='assets/imagens/sair.png' /></a></li>
-                            
+
                         </ul>
                     </nav>
                     <div class="menu-mobile">
@@ -64,35 +46,34 @@ ob_start();
 
                 <div class="square">
                     <div class="left">
+                        <!-- PESQUISAR PRODUTOS -->
                         <h1>Consulta</h1>
                         <form class="form-procurar" method="get">
-                            <input type="text" name="pesquisa" placeholder="Pesquise aqui um produto..."
-                                value="todos produtos" />
+                            <input type="text" name="pesquisa" placeholder="Pesquise aqui um produto..." />
                             <button> <img src="assets/imagens/lupa.png" /></button>
                         </form>
                         <?php
-                        if (isset($_GET['pesquisa']) && $_GET['pesquisa'] != "todos produtos") {
+                        if (isset($_GET['pesquisa'])) {
                             $pesquisa = $_GET['pesquisa'];
 
 
                             $pesquisa = mysqli_real_escape_string($conn, $pesquisa);
 
-                            $sql_code = "SELECT * FROM produtos WHERE NOME_PROD LIKE '$pesquisa%' LIMIT 10";
-                        } elseif (isset($_GET['pesquisa']) && $_GET['pesquisa'] == "todos produtos") {
-                            $sql_code = "SELECT * FROM produtos";
-
+                            $sql_code = "SELECT * FROM produtos WHERE NOME_PROD LIKE '$pesquisa%' AND EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}' LIMIT 10";
                         } else {
-                            $sql_code = "SELECT * FROM produtos LIMIT 10";
+                            $sql_code = "SELECT * FROM produtos WHERE EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}' LIMIT 10";
                         }
                         ?>
-
+                         <!-- Exibição PRODUTOS -->
                         <table id="tabelaBusca">
                             <?php
 
-                            $sql_query = mysqli_query($conn, $sql_code) or die("Falha na execução do código SQL: " . $mysqli->error);
-                            $aux = 0;
+                            $result = mysqli_query($conn, $sql_code);
+                            if (!$result) {
+                                echo "Erro na consulta: " . mysqli_error($conn);
+                            }
 
-                            while ($row = mysqli_fetch_assoc($sql_query)) {
+                            while ($row = mysqli_fetch_assoc($result)) {
                                 ?>
                                 <tr>
                                     <td><?php echo $row['CODIGO_PROD']; ?></td>
@@ -104,14 +85,15 @@ ob_start();
                                     </td>
 
                                 </tr>
-                                <?php $aux++;
-                            } ?>
+                                <?php
+                            }
+                            ?>
 
 
                         </table>
 
                     </div>
-
+                             <!-- EDITAR EXCLUIR E CADASTRAR PRODUTOS -->
                     <div class="right">
                         <h1>Produto</h1>
                         <form class="form-produto" method="POST">
@@ -141,7 +123,10 @@ ob_start();
                             </div>
                             <div class="preco-quantia">
                                 <div class="quantia">
-                                    <button class="laranja" name="remover">Remover</button>
+                                    <button class="vermelho" name="remover">Remover</button>
+                                </div>
+                                <div class="quantia">
+                                    <button onclick="limparCampos()" class="laranja" name="cancelar">Cancelar</button>
                                 </div>
                                 <div class="preco">
                                     <button class="verde" name="salvar">Salvar</button>
@@ -157,10 +142,11 @@ ob_start();
                                 $quantidade = (int) $_POST['quantidade-produto'];
                                 $preco = (float) $_POST['preco-produto'];
                                 $codigo = (int) $_POST['codigo-produto'];
+                                echo $codigo;
                                 $produto = mysqli_real_escape_string($conn, $_POST['nome-produto']);
                                 $fornecedor = mysqli_real_escape_string($conn, $_POST['fornecedor-produto']);
 
-                                $sql = "UPDATE produtos SET CODIGO_PROD='$codigo', NOME_PROD = '$produto', FORNECEDOR_PROD ='$fornecedor', QUANTIDADE_PROD = '$quantidade', PRECO_PROD = '$preco' WHERE ID_PROD = '$id'";
+                                $sql = "UPDATE produtos SET CODIGO_PROD='$codigo', NOME_PROD = '$produto', FORNECEDOR_PROD ='$fornecedor', QUANTIDADE_PROD = '$quantidade', PRECO_PROD = '$preco' WHERE ID_PROD = '$id' AND EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}'";
                                 if ($conn->query($sql) === TRUE) {
                                     header("Location: " . $_SERVER['PHP_SELF']);
                                     exit;
@@ -175,10 +161,10 @@ ob_start();
                                 $produto = mysqli_real_escape_string($conn, $_POST['nome-produto']);
                                 $fornecedor = mysqli_real_escape_string($conn, $_POST['fornecedor-produto']);
 
-                                $sql = "INSERT INTO produtos (CODIGO_PROD, NOME_PROD, FORNECEDOR_PROD, QUANTIDADE_PROD, PRECO_PROD) VALUES ('$codigo', '$produto', '$fornecedor', '$quantidade', '$preco')";
+                                $sql = "INSERT INTO produtos (CODIGO_PROD, NOME_PROD, FORNECEDOR_PROD, QUANTIDADE_PROD, PRECO_PROD, EMPRESAS_ID_EMP) VALUES ('$codigo', '$produto', '$fornecedor', '$quantidade', '$preco', '{$_SESSION['ID_EMP']}')";
 
                                 if ($conn->query($sql) === TRUE) {
-                                    
+
                                     header("Location: " . $_SERVER['PHP_SELF']);
                                     exit;
                                 } else {

@@ -1,19 +1,5 @@
 <?php
-try {
-    $servidor = "localhost";
-    $usuario = "root";
-    $senha = "";
-    $banco = "SISTEMA";
-
-    $conn = new mysqli($servidor, $usuario, $senha, $banco);
-
-    if ($conn->connect_error) {
-        die("Falha na conexão: " . $conn->connect_error);
-    }
-} catch (PDOException $e) {
-    echo "Erro na conexão: " . $e->getMessage();
-}
-
+include "../conexao.php";
 session_start();
 
 if (isset($_SESSION['CNPJ_EMP']) && isset($_SESSION['SENHA_EMP'])) {
@@ -49,6 +35,7 @@ if (isset($_SESSION['CNPJ_EMP']) && isset($_SESSION['SENHA_EMP'])) {
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $cnpj = $_POST['cnpj'];
                     $senha = $_POST['senha'];
+                    
 
                     if (!empty($cnpj) && !empty($senha)) {
                         $query = "SELECT * FROM empresas WHERE CNPJ_EMP = '$cnpj' AND SENHA_EMP = '$senha'";
@@ -60,6 +47,10 @@ if (isset($_SESSION['CNPJ_EMP']) && isset($_SESSION['SENHA_EMP'])) {
 
                             $_SESSION['CNPJ_EMP'] = $cnpj;
                             $_SESSION['SENHA_EMP'] = $senha;
+                            while ($row = mysqli_fetch_assoc($result)){
+                                $_SESSION['ID_EMP'] = $row['ID_EMP'];
+                            }
+                            
 
                             header("Location: ../pagina_venda/pagina_venda.php");
                         } else {

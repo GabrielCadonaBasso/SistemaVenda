@@ -1,24 +1,7 @@
 <?php
-try {
-    $servidor = "localhost";
-    $usuario = "root";
-    $senha = "";
-    $banco = "SISTEMA";
-
-    $conn = new mysqli($servidor, $usuario, $senha, $banco);
-
-    if ($conn->connect_error) {
-        die("Falha na conexão: " . $conn->connect_error);
-    }
-} catch (PDOException $e) {
-    echo "Erro na conexão: " . $e->getMessage();
-}
-
-session_start();
-
-if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
-    header("Location: ../login_empresas/login_empresas.php");
-}
+    include "../conexao.php";
+    include "../verifica_sessao.php";
+    
 ?>
 
 <!DOCTYPE html>
