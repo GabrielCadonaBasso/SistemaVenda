@@ -293,6 +293,10 @@ header{
     
 
 }
+.square .right .form-produto .preco-quantia .vermelho{
+    background-color: #be5959;
+    color:white;
+}
 .square .right .form-produto .preco-quantia  .verde{
     background-color: #3a6c67;
     color:white;

@@ -73,50 +73,46 @@ ob_start();
 
                 <div class="square">
                     <div class="left">
+                        <!-- PESQUISAR PRODUTOS -->
                         <h1>Consulta</h1>
                         <form class="form-procurar" method="get">
-                            <input type="text" name="pesquisa" placeholder="Pesquise aqui um cliente..."
-                                value="todos clientes" />
+                            <input type="text" name="pesquisa" placeholder="Pesquise aqui um produto..." />
                             <button> <img src="assets/imagens/lupa.png" /></button>
                         </form>
                         <?php
-                        if (isset($_GET['pesquisa']) && $_GET['pesquisa'] != "todos clientes") {
+                        if (isset($_GET['pesquisa'])) {
                             $pesquisa = $_GET['pesquisa'];
 
 
                             $pesquisa = mysqli_real_escape_string($conn, $pesquisa);
 
-                            $sql_code = "SELECT * FROM clientes WHERE NOME_CL LIKE '$pesquisa%' LIMIT 10";
-                        } elseif (isset($_GET['pesquisa']) && $_GET['pesquisa'] == "todos clientes") {
-                            $sql_code = "SELECT * FROM clientes";
-
+                            $sql_code = "SELECT * FROM clientes WHERE NOME_CL LIKE '$pesquisa%' AND EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}' LIMIT 10";
                         } else {
-                            $sql_code = "SELECT * FROM clientes LIMIT 10";
+                            $sql_code = "SELECT * FROM clientes WHERE EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}' LIMIT 10";
                         }
                         ?>
-
+                         <!-- Exibição PRODUTOS -->
                         <table id="tabelaBusca">
                             <?php
-                            
-                            $sql_query = mysqli_query($conn, $sql_code) or die("Falha na execução do código SQL: " . mysqli_error($conn));
-                            $aux = 0;
 
-                            while ($row = mysqli_fetch_assoc($sql_query)) {
-                            ?>
+                            $result = mysqli_query($conn, $sql_code);
+                            if (!$result) {
+                                echo "Erro na consulta: " . mysqli_error($conn);
+                            }
+
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
                                 <tr>
-                                    <td><?php echo htmlspecialchars($row['NOME_CL']); ?></td>
-                                    <td><?php echo htmlspecialchars($row['RG_CL']); ?></td>
-                                    <td><?php echo htmlspecialchars($row['CPF_CL']); ?></td>
-                                    <td>
-                                        <button onclick="consultaProduto(
-                                            <?php echo $row['ID_CL']; ?>,
-                                            '<?php echo addslashes($row['NOME_CL']); ?>',
-                                            '<?php echo addslashes($row['RG_CL']); ?>',
-                                            '<?php echo addslashes($row['CPF_CL']); ?>'
-                                        )">+</button>
+                                    <td><?php echo $row['NOME_CL']; ?></td>
+                                    <td><?php echo $row['RG_CL']; ?></td>
+                                    <td><?php echo $row['CPF_CL'] ; ?></td>
+
+                                    <td><button
+                                            onclick="consultaPessoa(<?php echo $row['ID_CL']; ?>,  '<?php echo addslashes( $row['NOME_CL']); ?>', '<?php echo addslashes($row['RG_CL']); ?>','<?php echo addslashes($row['CPF_CL']); ?>')">+</button>
                                     </td>
+
                                 </tr>
-                            <?php
+                                <?php
                             }
                             ?>
 
@@ -124,26 +120,29 @@ ob_start();
                         </table>
 
                     </div>
-
+                             <!-- EDITAR EXCLUIR E CADASTRAR PRODUTOS -->
                     <div class="right">
-                        <h1>Clientes</h1>
+                        <h1>Cliente</h1>
                         <form class="form-produto" method="POST">
 
                             <input type="hidden" name="id-cliente" id="id-cliente" value="-1" />
-                            <label></label>
-
+                            
                             <label>Nome do Cliente</label>
                             <input type="text" name="nome-cliente" id="nome-cliente"
                                 placeholder="Digite o nome do cliente..." required />
                             <label>RG</label>
-                            <input type="text" name="rg-cliente" id="rg-cliente" placeholder="Digite o RG do cliente..."
-                                required />
+                            <input type="text" name="rg-cliente" id="rg-cliente"
+                                placeholder="Digite o RG do cliente..." required />
+                                <label>CPF</label>
                             <input type="text" name="cpf-cliente" id="cpf-cliente"
                                 placeholder="Digite o CPF do cliente..." required />
-
+                            
                             <div class="preco-quantia">
                                 <div class="quantia">
-                                    <button class="laranja" name="remover">Remover</button>
+                                    <button class="vermelho" name="remover">Remover</button>
+                                </div>
+                                <div class="quantia">
+                                    <button onclick="limparCampos()" class="laranja" name="cancelar">Cancelar</button>
                                 </div>
                                 <div class="preco">
                                     <button class="verde" name="salvar">Salvar</button>
@@ -156,13 +155,13 @@ ob_start();
                         if (isset($_POST['salvar'])) {
                             if (isset($_POST['id-cliente']) && $_POST['id-cliente'] > -1) {
                                 $id = (int) $_POST['id-cliente'];
+                                $nome =  mysqli_real_escape_string($conn, $_POST['nome-cliente']);
+                                $rg =  mysqli_real_escape_string($conn, $_POST['rg-cliente']);
+                                $cpf =  mysqli_real_escape_string($conn, $_POST['cpf-cliente']);
+                                
+                                
 
-
-                                $nome = mysqli_real_escape_string($conn, $_POST['nome-cliente']);
-                                $rg = mysqli_real_escape_string($conn, $_POST['rg-cliente']);
-                                $cpf = mysqli_real_escape_string($conn, $_POST['cpf-cliente']);
-
-                                $sql = "UPDATE clientes SET NOME_CL='$nome', RG_CL = '$rg', CPF_CL ='$cpf' WHERE ID_CL = '$id'";
+                                $sql = "UPDATE clientes SET NOME_CL='$nome', RG_CL = '$rg', CPF_CL ='$cpf' WHERE ID_CL = '$id' AND EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}'";
                                 if ($conn->query($sql) === TRUE) {
                                     header("Location: " . $_SERVER['PHP_SELF']);
                                     exit;
@@ -171,12 +170,11 @@ ob_start();
                                 }
                             } else if (isset($_POST["nome-cliente"])) {
 
+                                $nome =  mysqli_real_escape_string($conn, $_POST['nome-cliente']);
+                                $rg =  mysqli_real_escape_string($conn, $_POST['rg-cliente']);
+                                $cpf =  mysqli_real_escape_string($conn, $_POST['cpf-cliente']);
 
-                                $nome = mysqli_real_escape_string($conn, $_POST['nome-cliente']);
-                                $rg = mysqli_real_escape_string($conn, $_POST['rg-cliente']);
-                                $cpf = mysqli_real_escape_string($conn, $_POST['cpf-cliente']);
-
-                                $sql = "INSERT INTO clientes (NOME_CL, RG_CL, CPF_CL) VALUES ('$nome', '$rg', '$cpf')";
+                                $sql = "INSERT INTO clientes (NOME_CL, RG_CL, CPF_CL, EMPRESAS_ID_EMP) VALUES ('$nome', '$rg', '$cpf', '{$_SESSION['ID_EMP']}')";
 
                                 if ($conn->query($sql) === TRUE) {
 
@@ -192,7 +190,7 @@ ob_start();
                         } else if (isset($_POST["remover"])) {
                             if (isset($_POST['id-cliente']) && $_POST['id-cliente'] > -1) {
                                 $id = $id = (int) $_POST['id-cliente'];
-                                $sql = "DELETE FROM clientes WHERE ID_CL = '$id'";
+                                $sql = "DELETE FROM clientes WHERE ID_CL = '$id'AND EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}' ";
                                 if ($conn->query($sql) === TRUE) {
                                     header("Location:" . $_SERVER["PHP_SELF"]);
                                     exit;
@@ -213,8 +211,6 @@ ob_start();
 
 
             </div>
-
-        </div>
 
         </div>
     </section>

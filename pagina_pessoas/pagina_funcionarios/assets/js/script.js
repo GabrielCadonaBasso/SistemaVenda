@@ -1,10 +1,15 @@
-function consultaProduto(id, nome_cliente, rg_cliente, cpf_cliente) {
-    document.getElementById("id-cliente").value = id;
-    document.getElementById("nome-cliente").value = nome_cliente;
-    document.getElementById("rg-cliente").value = rg_cliente;
-    document.getElementById("cpf-cliente").value = cpf_cliente;
+function consultaPessoa(id, nome, cpf) {
+    document.getElementById('id-cliente').value = id;
+    document.getElementById('nome-cliente').value = nome;
+    
+    document.getElementById('cpf-cliente').value = cpf;
     
 }
-function exibirMensagem ($mensagem){
-    alert( json_encode($mensagem) );
+function limparCampos() {
+
+    document.getElementById('id-cliente').value = -1;
+    document.getElementById('nome-cliente').value = "";
+    document.getElementById('cpf-cliente').value = "";
+    
+    
 }

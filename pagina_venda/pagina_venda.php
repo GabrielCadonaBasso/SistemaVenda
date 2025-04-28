@@ -51,7 +51,17 @@
                                 <label>Colaborador</label>
                                 <select>
                                     <option>Selcione o Colaborador</option>
-                                    <option>Lucas</option>
+                                    <?php
+                                        $sql_code= "select * from funcionarios where EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}'";
+                                        $result = mysqli_query($conn, $sql_code);
+                                    if (!$result) {
+                                        echo "Erro na consulta: " . mysqli_error($conn);
+                                    }
+                                        while ($row = mysqli_fetch_array($result)) {
+                                    ?>
+
+                                    <option><?php echo $row['NOME_FUNC'] ?> </option>
+                                    <?php } ?>
                                 </select>
 
                             </div>
@@ -71,43 +81,7 @@
 
                         </div>
 
-                        <h1>Produto</h1>
-                        <div class="produto">
-                            <form class="form-produto">
-                                <div class="nome-quantidade">
-                                    <div class="nome">
-                                        <label>Produto</label>
-                                        <span>
-                                            <input type="text" placeholder="Procurar Produto..." />
-                                            <button><img src="assets/imagens/lupa.png" /></button>
-                                        </span>
-
-
-                                    </div>
-                                    <div class="quantidade">
-                                        <label>Quantidade</label>
-                                        <input type="number" step="0.01" placeholder="Quantidade" />
-                                    </div>
-                                    
-                                </div>
-                                <div class="nome-quantidade">
-                                    <div class="nome">
-                                        <label>Preço Unitário</label>
-                                        <span>
-                                            <input type="numeber" name="preco-unitario" disabled/>
-                                            
-                                        </span>
-
-
-                                    </div>
-                                    <div class="quantidade">
-                                        <label>Preço Total</label>
-                                        <input type="number" step="0.01" name="preco-total" disabled />
-                                    </div>
-                                    
-                                </div>
-                            </form>
-                        </div>
+                        
                     </div>
                     <div class="right">
                         <h1>Venda</h1>

@@ -1,24 +1,7 @@
 <?php
-try {
-    $servidor = "localhost";
-    $usuario = "root";
-    $senha = "";
-    $banco = "SISTEMA";
-
-    $conn = new mysqli($servidor, $usuario, $senha, $banco);
-
-    if ($conn->connect_error) {
-        die("Falha na conexão: " . $conn->connect_error);
-    }
-} catch (PDOException $e) {
-    echo "Erro na conexão: " . $e->getMessage();
-}
-
-session_start();
-
-if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
-    header("Location: ../login_empresas/login_empresas.php");
-}
+    include "../../verifica_sessao.php";
+    include "../../conexao.php";
+    ob_start();
 ?>
 
 <!DOCTYPE html>
@@ -67,86 +50,76 @@ if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
     <section class="main">
         <div class="container">
             <div class="area">
-            <div class="square">
+
+                <div class="square">
                     <div class="left">
+                        <!-- PESQUISAR PRODUTOS -->
                         <h1>Consulta</h1>
                         <form class="form-procurar" method="get">
-                            <input type="text" name="pesquisa" placeholder="Pesquise aqui um produto..."
-                                value="todos produtos" />
+                            <input type="text" name="pesquisa" placeholder="Pesquise aqui um produto..." />
                             <button> <img src="assets/imagens/lupa.png" /></button>
                         </form>
                         <?php
-                        if (isset($_GET['pesquisa']) && $_GET['pesquisa'] != "todos produtos") {
+                        if (isset($_GET['pesquisa'])) {
                             $pesquisa = $_GET['pesquisa'];
 
 
                             $pesquisa = mysqli_real_escape_string($conn, $pesquisa);
 
-                            $sql_code = "SELECT * FROM produtos WHERE NOME_PROD LIKE '$pesquisa%' LIMIT 10";
-                        } elseif (isset($_GET['pesquisa']) && $_GET['pesquisa'] == "todos produtos") {
-                            $sql_code = "SELECT * FROM produtos";
-
+                            $sql_code = "SELECT * FROM funcionarios WHERE NOME_FUNC LIKE '$pesquisa%' AND EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}' LIMIT 10";
                         } else {
-                            $sql_code = "SELECT * FROM produtos LIMIT 10";
+                            $sql_code = "SELECT * FROM funcionarios WHERE EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}' LIMIT 10";
                         }
                         ?>
-
+                         <!-- Exibição PRODUTOS -->
                         <table id="tabelaBusca">
                             <?php
 
-                            $sql_query = mysqli_query($conn, $sql_code) or die("Falha na execução do código SQL: " . $mysqli->error);
-                            $aux = 0;
+                            $result = mysqli_query($conn, $sql_code);
+                            if (!$result) {
+                                echo "Erro na consulta: " . mysqli_error($conn);
+                            }
 
-                            while ($row = mysqli_fetch_assoc($sql_query)) {
+                            while ($row = mysqli_fetch_assoc($result)) {
                                 ?>
                                 <tr>
-                                    <td><?php echo $row['CODIGO_PROD']; ?></td>
-                                    <td><?php echo $row['NOME_PROD']; ?></td>
-                                    <td><?php echo $row['QUANTIDADE_PROD'] . " UN"; ?></td>
+                                    <td><?php echo $row['NOME_FUNC']; ?></td>
+                                    <td><?php echo $row['CPF_FUNC']; ?></td>
+                                    
 
                                     <td><button
-                                            onclick="consultaProduto(<?php echo $row['ID_PROD']; ?>,  <?php echo $row['CODIGO_PROD']; ?>, '<?php echo addslashes($row['NOME_PROD']); ?>','<?php echo addslashes($row['FORNECEDOR_PROD']); ?>',<?php echo $row['QUANTIDADE_PROD']; ?>, <?php echo $row['PRECO_PROD']; ?>)">+</button>
+                                            onclick="consultaPessoa(<?php echo $row['ID_FUNC']; ?>,  '<?php echo addslashes( $row['NOME_FUNC']); ?>', '<?php echo addslashes($row['CPF_FUNC']); ?>')">+</button>
                                     </td>
 
                                 </tr>
-                                <?php $aux++;
-                            } ?>
+                                <?php
+                            }
+                            ?>
 
 
                         </table>
 
                     </div>
-
+                             <!-- EDITAR EXCLUIR E CADASTRAR PRODUTOS -->
                     <div class="right">
                         <h1>Funcionário</h1>
                         <form class="form-produto" method="POST">
 
-                            <input type="hidden" name="id-produto" id="id-produto" value="-1" />
-                            <label>Código</label>
-                            <input type="number" step="1" name="codigo-produto" id="codigo-produto"
-                                placeholder="Digite o código do produto..." required />
-                            <label>Nome do Produto</label>
-                            <input type="text" name="nome-produto" id="nome-produto"
-                                placeholder="Digite o nome do produto..." required />
-                            <label>Fornecedor</label>
-                            <input type="text" name="fornecedor-produto" id="fornecedor-produto"
-                                placeholder="Digite o fornecedor do produto..." required />
+                            <input type="hidden" name="id-cliente" id="id-cliente" value="-1" />
+                            
+                            <label>Nome do Funcionário</label>
+                            <input type="text" name="nome-cliente" id="nome-cliente"
+                                placeholder="Digite o nome do cliente..." required />                            
+                            <label>CPF</label>
+                            <input type="text" name="cpf-cliente" id="cpf-cliente"
+                                placeholder="Digite o CPF do cliente..." required />
+                            
                             <div class="preco-quantia">
                                 <div class="quantia">
-                                    <label>Quantidade</label><br>
-                                    <input type="number" name="quantidade-produto" id="quantidade-produto"
-                                        placeholder="Qtd do produto..." required />
+                                    <button class="vermelho" name="remover">Remover</button>
                                 </div>
-                                <div class="preco">
-                                    <label>Preço</label><br>
-                                    <input type="number" step="0.01" name="preco-produto" id="preco-produto"
-                                        placeholder="Preço do produto..." required />
-                                </div>
-
-                            </div>
-                            <div class="preco-quantia">
                                 <div class="quantia">
-                                    <button class="laranja" name="remover">Remover</button>
+                                    <button onclick="limparCampos()" class="laranja" name="cancelar">Cancelar</button>
                                 </div>
                                 <div class="preco">
                                     <button class="verde" name="salvar">Salvar</button>
@@ -157,33 +130,31 @@ if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
 
                         <?php
                         if (isset($_POST['salvar'])) {
-                            if (isset($_POST['id-produto']) && $_POST['id-produto'] > -1) {
-                                $id = (int) $_POST['id-produto'];
-                                $quantidade = (int) $_POST['quantidade-produto'];
-                                $preco = (float) $_POST['preco-produto'];
-                                $codigo = (int) $_POST['codigo-produto'];
-                                $produto = mysqli_real_escape_string($conn, $_POST['nome-produto']);
-                                $fornecedor = mysqli_real_escape_string($conn, $_POST['fornecedor-produto']);
+                            if (isset($_POST['id-cliente']) && $_POST['id-cliente'] > -1) {
+                                $id = (int) $_POST['id-cliente'];
+                                $nome =  mysqli_real_escape_string($conn, $_POST['nome-cliente']);
+                                
+                                $cpf =  mysqli_real_escape_string($conn, $_POST['cpf-cliente']);
+                                
+                                
 
-                                $sql = "UPDATE produtos SET CODIGO_PROD='$codigo', NOME_PROD = '$produto', FORNECEDOR_PROD ='$fornecedor', QUANTIDADE_PROD = '$quantidade', PRECO_PROD = '$preco' WHERE ID_PROD = '$id'";
+                                $sql = "UPDATE funcionarios SET NOME_FUNC='$nome', CPF_FUNC ='$cpf' WHERE ID_FUNC = '$id' AND EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}'";
                                 if ($conn->query($sql) === TRUE) {
                                     header("Location: " . $_SERVER['PHP_SELF']);
                                     exit;
                                 } else {
                                     echo "Erro de Banco de dado: " . $conn->error;
                                 }
-                            } else if (isset($_POST["codigo-produto"])) {
+                            } else if (isset($_POST["nome-cliente"])) {
 
-                                $quantidade = (int) $_POST['quantidade-produto'];
-                                $preco = (float) $_POST['preco-produto'];
-                                $codigo = (int) $_POST['codigo-produto'];
-                                $produto = mysqli_real_escape_string($conn, $_POST['nome-produto']);
-                                $fornecedor = mysqli_real_escape_string($conn, $_POST['fornecedor-produto']);
+                                $nome =  mysqli_real_escape_string($conn, $_POST['nome-cliente']);
+                                
+                                $cpf =  mysqli_real_escape_string($conn, $_POST['cpf-cliente']);
 
-                                $sql = "INSERT INTO produtos (CODIGO_PROD, NOME_PROD, FORNECEDOR_PROD, QUANTIDADE_PROD, PRECO_PROD) VALUES ('$codigo', '$produto', '$fornecedor', '$quantidade', '$preco')";
+                                $sql = "INSERT INTO funcionarios (NOME_FUNC, CPF_FUNC, EMPRESAS_ID_EMP) VALUES ('$nome','$cpf', '{$_SESSION['ID_EMP']}')";
 
                                 if ($conn->query($sql) === TRUE) {
-                                    echo "deu certo esssa merda";
+
                                     header("Location: " . $_SERVER['PHP_SELF']);
                                     exit;
                                 } else {
@@ -194,9 +165,9 @@ if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
 
 
                         } else if (isset($_POST["remover"])) {
-                            if (isset($_POST['id-produto']) && $_POST['id-produto'] > -1) {
-                                $id = $id = (int) $_POST['id-produto'];
-                                $sql = "DELETE FROM produtos WHERE ID_PROD = '$id'";
+                            if (isset($_POST['id-cliente']) && $_POST['id-cliente'] > -1) {
+                                $id = $id = (int) $_POST['id-cliente'];
+                                $sql = "DELETE FROM funcionarios WHERE ID_FUNC = '$id'AND EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}' ";
                                 if ($conn->query($sql) === TRUE) {
                                     header("Location:" . $_SERVER["PHP_SELF"]);
                                     exit;
@@ -217,8 +188,6 @@ if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
 
 
             </div>
-
-        </div>
 
         </div>
     </section>

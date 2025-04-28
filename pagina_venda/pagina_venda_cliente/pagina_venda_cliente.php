@@ -1,24 +1,8 @@
 <?php
-try {
-    $servidor = "localhost";
-    $usuario = "root";
-    $senha = "";
-    $banco = "SISTEMA";
+include "../../conexao.php";
+include "../../verifica_sessao.php";
 
-    $conn = new mysqli($servidor, $usuario, $senha, $banco);
 
-    if ($conn->connect_error) {
-        die("Falha na conexão: " . $conn->connect_error);
-    }
-} catch (PDOException $e) {
-    echo "Erro na conexão: " . $e->getMessage();
-}
-
-session_start();
-
-if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
-    header("Location: ../login_empresas/login_empresas.php");
-}
 ?>
 
 <!DOCTYPE html>
@@ -63,20 +47,45 @@ if (!isset($_SESSION['CNPJ_EMP']) || !isset($_SESSION['SENHA_EMP'])) {
                         <h1>Busca de Cliente</h1>
                         <form class="form-cliente">
                             <div class="procurar-cliente">
-                                <input type="text" name="nome-cliente" placeholder="Procure o Nome do Cliente..." />
-                                <button><img src="assets/imagens/lupa.png" /></button>
+                                <input type="text" name="pesquisa" placeholder="Procure o Nome do Cliente..." />
+                                <button ><img src="assets/imagens/lupa.png" /></button>
                             </div>
 
                         </form>
+                        <?php
+                            if (isset($_GET['pesquisa'])) {
+                                $pesquisa = $_GET['pesquisa'];
+
+
+                                $pesquisa = mysqli_real_escape_string($conn, $pesquisa);
+
+                                $sql_code = "SELECT * FROM clientes WHERE NOME_CL LIKE '$pesquisa%' AND EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}' LIMIT 10";
+                            } else {
+                                $sql_code = "SELECT * FROM clientes WHERE EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}' LIMIT 10";
+                            }
+                        ?>
 
                         <table>
+                            <?php
+
+                            $result = mysqli_query($conn, $sql_code);
+                            if (!$result) {
+                                echo "Erro na consulta: " . mysqli_error($conn);
+                            }
+                            while ($row = mysqli_fetch_assoc($result)) {
+                            ?>
                             <tr>
-                                <td>Carlos</td>
-                                <td> 0002222</td>
+                                <td><?php echo $row['NOME_CL']; ?></td>
+                                <td><?php echo $row['RG_CL']; ?></td>
+                                <td><?php echo $row['CPF_CL'] ; ?></td>
                                 <td><button>+</button></td>
+                                
                             </tr>
-                            
-                           
+                            <?php
+                            }
+                            ?>
+
+
                         </table>
                     </div>
 
