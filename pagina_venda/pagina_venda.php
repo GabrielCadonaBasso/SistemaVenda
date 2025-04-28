@@ -1,7 +1,7 @@
 <?php
-    include "../conexao.php";
-    include "../verifica_sessao.php";
-    
+include "../conexao.php";
+include "../verifica_sessao.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +30,7 @@
                             <li><a href="../logout/logout.php"><img src='assets/imagens/sair.png' /></a></li>
                         </ul>
                     </nav>
-                    <div class="menu-mobile">
+                    <div class="menu-mobile" id="menu-mobile" onclick="menu()">
                         <div class="menu-item"></div>
                         <div class="menu-item"></div>
                         <div class="menu-item"></div>
@@ -39,6 +39,17 @@
             </div>
         </div>
     </header>
+    <div class="sidebar" id="sidebar" >
+        <div id="fechar" onclick="fechar()">x</div>
+        <ul>
+            <li><a href="../pagina_venda/pagina_venda.php">Venda</a></li>
+            <li><a href="../pagina_estoque/pagina_estoque.php">Estoque</a></li>
+            <li><a href="../pagina_pessoas/pagina_pessoas.php">Pessoas</a></li>
+            <li><a href="../pagina_pessoas/pagina_funcionarios/pagina_funcionarios.php">Funcionários</a></li>
+            
+            <li><a href="../logout/logout.php">Sair</a></li>
+        </ul>
+    </div>
     <section class="main">
         <div class="container">
             <div class="area">
@@ -52,15 +63,15 @@
                                 <select>
                                     <option>Selcione o Colaborador</option>
                                     <?php
-                                        $sql_code= "select * from funcionarios where EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}'";
-                                        $result = mysqli_query($conn, $sql_code);
+                                    $sql_code = "select * from funcionarios where EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}'";
+                                    $result = mysqli_query($conn, $sql_code);
                                     if (!$result) {
                                         echo "Erro na consulta: " . mysqli_error($conn);
                                     }
-                                        while ($row = mysqli_fetch_array($result)) {
-                                    ?>
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        ?>
 
-                                    <option><?php echo $row['NOME_FUNC'] ?> </option>
+                                        <option><?php echo $row['NOME_FUNC'] ?> </option>
                                     <?php } ?>
                                 </select>
 
@@ -81,7 +92,7 @@
 
                         </div>
 
-                        
+
                     </div>
                     <div class="right">
                         <h1>Venda</h1>
@@ -94,6 +105,7 @@
 
         </div>
     </section>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>

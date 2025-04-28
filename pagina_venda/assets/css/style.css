@@ -29,7 +29,46 @@ header {
     align-items: center;
 
 }
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -250PX; /* esconde fora da tela */
+    width: 250px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    transition: left 0.3s ease;
+    z-index: 9999;
+    padding-top: 60px;
+}
+#fechar{
+    padding-left: 20px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
 
+.sidebar ul li {
+    padding: 15px 20px;
+    
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+/* Quando ativo */
+.sidebar.active {
+    right: 0;
+}
+.menu-mobile-sumir {
+    opacity: 0;
+}
 .container {
     padding: 0 25px;
     width: 1300px;
@@ -100,9 +139,10 @@ header {
     width: 34px;
     background-color: #FFF;
 }
-
-.main,
-.area {
+.menu-mobile:hover{
+    opacity: 0.5;
+}
+.main, .area {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -216,14 +256,14 @@ header {
 
 
 @media(max-width:750px) {
-    /* .menu nav {
+     .menu nav {
         display: none;
     }
 
     .menu-mobile {
         display: flex;
         cursor: pointer;
-    } */
+    } 
     .main, .area{
         height: auto;
     }

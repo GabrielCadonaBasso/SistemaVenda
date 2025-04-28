@@ -31,7 +31,7 @@ ob_start();
 
                         </ul>
                     </nav>
-                    <div class="menu-mobile">
+                    <div class="menu-mobile" id="menu-mobile" onclick="menu()">
                         <div class="menu-item"></div>
                         <div class="menu-item"></div>
                         <div class="menu-item"></div>
@@ -40,6 +40,16 @@ ob_start();
             </div>
         </div>
     </header>
+    <div class="sidebar" id="sidebar" >
+        <div id="fechar" onclick="fechar()">x</div>
+        <ul>
+            <li><a href="../pagina_venda/pagina_venda.php">Venda</a></li>
+            <li><a href="../pagina_estoque/pagina_estoque.php">Estoque</a></li>
+            <li><a href="../pagina_pessoas/pagina_pessoas.php">Pessoas</a></li>
+            <li><a href="../pagina_pessoas/pagina_funcionarios/pagina_funcionarios.php">Funcionários</a></li>
+            <li><a href="../logout/logout.php">Sair</a></li>
+        </ul>
+    </div>
     <section class="main">
         <div class="container">
             <div class="area">
