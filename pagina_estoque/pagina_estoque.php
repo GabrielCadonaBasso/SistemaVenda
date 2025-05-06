@@ -86,12 +86,11 @@ ob_start();
                             while ($row = mysqli_fetch_assoc($result)) {
                                 ?>
                                 <tr>
-                                    <td><?php echo $row['CODIGO_PROD']; ?></td>
                                     <td><?php echo $row['NOME_PROD']; ?></td>
                                     <td><?php echo $row['QUANTIDADE_PROD'] . " UN"; ?></td>
-
+                                    <td><?php echo "R$ " . $row['PRECO_PROD']; ?></td>
                                     <td><button
-                                            onclick="consultaProduto(<?php echo $row['ID_PROD']; ?>,  <?php echo $row['CODIGO_PROD']; ?>, '<?php echo addslashes($row['NOME_PROD']); ?>','<?php echo addslashes($row['FORNECEDOR_PROD']); ?>',<?php echo $row['QUANTIDADE_PROD']; ?>, <?php echo $row['PRECO_PROD']; ?>)">+</button>
+                                            onclick="consultaProduto(<?php echo $row['ID_PROD']; ?>, '<?php echo addslashes($row['NOME_PROD']); ?>','<?php echo addslashes($row['FORNECEDOR_PROD']); ?>',<?php echo $row['QUANTIDADE_PROD']; ?>, <?php echo $row['PRECO_PROD']; ?>)">+</button>
                                     </td>
 
                                 </tr>
@@ -109,9 +108,6 @@ ob_start();
                         <form class="form-produto" method="POST">
 
                             <input type="hidden" name="id-produto" id="id-produto" value="-1" />
-                            <label>Código</label>
-                            <input type="text" step="1" name="codigo-produto" id="codigo-produto"
-                                placeholder="Digite o código do produto..."  required />
                             <label>Nome do Produto</label>
                             <input type="text" name="nome-produto" id="nome-produto"
                                 placeholder="Digite o nome do produto..." required />
@@ -151,27 +147,24 @@ ob_start();
                                 $id = (int) $_POST['id-produto'];
                                 $quantidade = (int) $_POST['quantidade-produto'];
                                 $preco = (float) $_POST['preco-produto'];
-                                $codigo = (int) $_POST['codigo-produto'];
-                                echo $codigo;
                                 $produto = mysqli_real_escape_string($conn, $_POST['nome-produto']);
                                 $fornecedor = mysqli_real_escape_string($conn, $_POST['fornecedor-produto']);
 
-                                $sql = "UPDATE produtos SET CODIGO_PROD='$codigo', NOME_PROD = '$produto', FORNECEDOR_PROD ='$fornecedor', QUANTIDADE_PROD = '$quantidade', PRECO_PROD = '$preco' WHERE ID_PROD = '$id' AND EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}'";
+                                $sql = "UPDATE produtos SET NOME_PROD = '$produto', FORNECEDOR_PROD ='$fornecedor', QUANTIDADE_PROD = '$quantidade', PRECO_PROD = '$preco' WHERE ID_PROD = '$id' AND EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}'";
                                 if ($conn->query($sql) === TRUE) {
                                     header("Location: " . $_SERVER['PHP_SELF']);
                                     exit;
                                 } else {
                                     echo "Erro de Banco de dado: " . $conn->error;
                                 }
-                            } else if (isset($_POST["codigo-produto"])) {
+                            } else if (isset($_POST["nome-produto"])) {
 
                                 $quantidade = (int) $_POST['quantidade-produto'];
                                 $preco = (float) $_POST['preco-produto'];
-                                $codigo = (int) $_POST['codigo-produto'];
                                 $produto = mysqli_real_escape_string($conn, $_POST['nome-produto']);
                                 $fornecedor = mysqli_real_escape_string($conn, $_POST['fornecedor-produto']);
 
-                                $sql = "INSERT INTO produtos (CODIGO_PROD, NOME_PROD, FORNECEDOR_PROD, QUANTIDADE_PROD, PRECO_PROD, EMPRESAS_ID_EMP) VALUES ('$codigo', '$produto', '$fornecedor', '$quantidade', '$preco', '{$_SESSION['ID_EMP']}')";
+                                $sql = "INSERT INTO produtos (NOME_PROD, FORNECEDOR_PROD, QUANTIDADE_PROD, PRECO_PROD, EMPRESAS_ID_EMP) VALUES ('$produto', '$fornecedor', '$quantidade', '$preco', '{$_SESSION['ID_EMP']}')";
 
                                 if ($conn->query($sql) === TRUE) {
 
