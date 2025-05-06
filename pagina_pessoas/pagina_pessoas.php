@@ -121,13 +121,13 @@ ob_start();
                             
                             <label>Nome do Cliente</label>
                             <input type="text" name="nome-cliente" id="nome-cliente"
-                                placeholder="Digite o nome do cliente..." required />
+                            placeholder="Digite seu nome..." maxlength="45" required />
                             <label>RG</label>
-                            <input type="text" name="rg-cliente" id="rg-cliente"
+                            <input type="text" oninput="permitirSomenteNumeros(this)" maxlength="12" minlength="12" name="rg-cliente" id="rg-cliente"
                                 placeholder="Digite o RG do cliente..." required />
                                 <label>CPF</label>
                             <input type="text" name="cpf-cliente" id="cpf-cliente"
-                                placeholder="Digite o CPF do cliente..." required />
+                            maxlength="14" minlength="14" oninput="formatarCPF(this)" placeholder="000.000.000-00"  required />
                             
                             <div class="preco-quantia">
                                 <div class="quantia">

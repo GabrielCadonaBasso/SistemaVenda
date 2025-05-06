@@ -29,3 +29,20 @@ function fechar(){
     sidebar.classList.remove('active');
     menumobile.classList.remove('menu-mobile-sumir');
 }
+function formatarCPF(campo) {
+    let cpf = campo.value.replace(/\D/g, ''); // Remove tudo que não é número
+    cpf = cpf.substring(0, 11); // Limita a 11 dígitos
+
+    let formatado = '';
+
+    if (cpf.length > 0) formatado = cpf.substring(0, 3);
+    if (cpf.length >= 4) formatado += '.' + cpf.substring(3, 6);
+    if (cpf.length >= 7) formatado += '.' + cpf.substring(6, 9);
+    if (cpf.length >= 10) formatado += '-' + cpf.substring(9, 11);
+
+    campo.value = formatado;
+}
+function permitirSomenteNumeros(campo) {
+    campo.value = campo.value.replace(/\D/g, ''); // Remove tudo que não é número
+}
+

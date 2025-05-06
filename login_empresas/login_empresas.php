@@ -18,13 +18,14 @@ if (isset($_SESSION['CNPJ_EMP']) && isset($_SESSION['SENHA_EMP'])) {
 
 <body>
     <div class="main">
+    
         <div class="main-square">
             <div class="logo">
                 <img src="assets/images/feitoAmão.png" />
                 <div class="formulario">
                     <form action="" method="post">
-                        <input type="text" name="cnpj" placeholder="CNPJ" required />
-                        <input type="password" name="senha" placeholder="Senha" required />
+                        <input type="text" name="cnpj"  maxlength="18" oninput="formatarCNPJ(this)" placeholder="00.000.000/0000-00" id="cnpj" required/>
+                        <input type="password" name="senha" placeholder="Senha" required  maxlength="16"/>
                         <button type="submit">Login</button>
                     </form>
                     <p>Não tem uma conta? <a href="../cadastro_empresas/cadastro_empresas.php">Cadastre-se aqui!</a></p>
@@ -65,8 +66,9 @@ if (isset($_SESSION['CNPJ_EMP']) && isset($_SESSION['SENHA_EMP'])) {
 
 
     </div>
-
+    
     <script src="assets/js/script.js"></script>
+    
 </body>
 
 </html>

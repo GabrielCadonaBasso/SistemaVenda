@@ -119,10 +119,10 @@
                             
                             <label>Nome do Funcionário</label>
                             <input type="text" name="nome-cliente" id="nome-cliente"
-                                placeholder="Digite o nome do cliente..." required />                            
+                                placeholder="Digite o nome do cliente..." maxlength="45"required />                            
                             <label>CPF</label>
                             <input type="text" name="cpf-cliente" id="cpf-cliente"
-                                placeholder="Digite o CPF do cliente..." required />
+                            maxlength="14" oninput="formatarCPF(this)" placeholder="000.000.000-00" required />
                             
                             <div class="preco-quantia">
                                 <div class="quantia">

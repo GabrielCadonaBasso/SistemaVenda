@@ -45,7 +45,7 @@ ob_start();
         <ul>
             <li><a href="../pagina_venda/pagina_venda.php">Venda</a></li>
             <li><a href="../pagina_estoque/pagina_estoque.php">Estoque</a></li>
-            <li><a href="../pagina_pessoas/pagina_pessoas.php">Pessoas</a></li>
+            <li><a href="../pagina_pessoas/pagina_pessoas.php">Clientes</a></li>
             <li><a href="../pagina_pessoas/pagina_funcionarios/pagina_funcionarios.php">Funcionários</a></li>
             <li><a href="../logout/logout.php">Sair</a></li>
         </ul>
@@ -110,8 +110,8 @@ ob_start();
 
                             <input type="hidden" name="id-produto" id="id-produto" value="-1" />
                             <label>Código</label>
-                            <input type="number" step="1" name="codigo-produto" id="codigo-produto"
-                                placeholder="Digite o código do produto..." required />
+                            <input type="text" step="1" name="codigo-produto" id="codigo-produto"
+                                placeholder="Digite o código do produto..."  required />
                             <label>Nome do Produto</label>
                             <input type="text" name="nome-produto" id="nome-produto"
                                 placeholder="Digite o nome do produto..." required />

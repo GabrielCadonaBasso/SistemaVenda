@@ -44,7 +44,7 @@ include "../verifica_sessao.php";
         <ul>
             <li><a href="../pagina_venda/pagina_venda.php">Venda</a></li>
             <li><a href="../pagina_estoque/pagina_estoque.php">Estoque</a></li>
-            <li><a href="../pagina_pessoas/pagina_pessoas.php">Pessoas</a></li>
+            <li><a href="../pagina_pessoas/pagina_pessoas.php">Clientes</a></li>
             <li><a href="../pagina_pessoas/pagina_funcionarios/pagina_funcionarios.php">Funcionários</a></li>
             
             <li><a href="../logout/logout.php">Sair</a></li>
