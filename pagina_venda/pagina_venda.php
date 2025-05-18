@@ -2,6 +2,9 @@
 include "../conexao.php";
 include "../verifica_sessao.php";
 
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +18,18 @@ include "../verifica_sessao.php";
 </head>
 
 <body>
+    <script>
+        inserirClienteCampo('<?php
+    // Traz o cliente selecionado ao campo
+        if (isset($_SESSION['id_cliente']) && isset($_SESSION['nome_cliente'])){
+             echo addslashes($_SESSION['nome_cliente']);
+        }else{
+            echo '';
+        }
+    ?>'
+    )
+    </script>
+    
     <header>
         <div class="header">
             <div class="container">
@@ -53,8 +68,12 @@ include "../verifica_sessao.php";
     <section class="main">
         <div class="container">
             <div class="area">
-
+            
                 <div class="square">
+                    <?php if(isset($_SESSION['nome_cliente'])){
+                echo  $_SESSION['nome_cliente'];   
+            }
+            ?>
                     <div class="left">
                         <h1>Dados</h1>
                         <div class="dados-pessoas">
@@ -81,7 +100,7 @@ include "../verifica_sessao.php";
                                 action="pagina_venda_cliente/pagina_venda_cliente.php">
                                 <label>Cliente</label>
                                 <div class="procurar-cliente">
-                                    <input type="text" name="cliente" placeholder="Nome do cliente" />
+                                    <input type="text" name="cliente" id="clienteInput" placeholder="Nome do cliente" readonly />
                                     <button><img src="assets/imagens/lupa.png" /></button>
                                 </div>
 

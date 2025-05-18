@@ -1,6 +1,15 @@
 <?php
+
 include "../../conexao.php";
 include "../../verifica_sessao.php";
+ob_start();
+if (isset($_SESSION['id_cliente']) && isset($_SESSION['nome_cliente'])){
+    unset($_SESSION['id_cliente']);
+    unset($_SESSION['nome_cliente']);
+    
+    
+}
+ 
 
 
 ?>
@@ -78,15 +87,31 @@ include "../../verifica_sessao.php";
                                 <td><?php echo $row['NOME_CL']; ?></td>
                                 <td><?php echo $row['RG_CL']; ?></td>
                                 <td><?php echo $row['CPF_CL'] ; ?></td>
-                                <td><button>+</button></td>
+                                <td><button name='PegarCliente' onclick="PegarCliente(<?php echo $row['ID_CL'];?>,'<?php echo $row['NOME_CL']; ?>')">+</button></td>
                                 
                             </tr>
                             <?php
+                            
                             }
+                            ob_end_flush();
                             ?>
 
 
                         </table>
+                        <form method="post" id="form-cliente-sessao">
+                            <input type="hidden" id="id_cliente_sessao" name="id_cliente_sessao"/>
+                            <input type="hidden" id="nome_cliente_sessao" name="nome_cliente_sessao"/>
+                        </form>
+                        
+                        <?php 
+                            if(isset($_POST['id_cliente_sessao'])){
+                                $_SESSION['id_cliente'] = $_POST['id_cliente_sessao'];
+                                $_SESSION['nome_cliente'] = $_POST['nome_cliente_sessao'];
+
+                                
+                                header('location: ../pagina_venda.php');
+                            }
+                        ?>
                     </div>
 
 
@@ -99,6 +124,7 @@ include "../../verifica_sessao.php";
 
         </div>
     </section>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>

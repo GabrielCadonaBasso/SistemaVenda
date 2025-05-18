@@ -11,3 +11,12 @@ function fechar(){
     sidebar.classList.remove('active');
     menumobile.classList.remove('menu-mobile-sumir');
 }
+
+function inserirClienteCampo(nome){
+    if (nome == ''){
+        return;
+    }else{
+        document.getElementById("clienteInput").value = nome;
+    }
+    
+}
