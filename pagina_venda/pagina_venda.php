@@ -1,6 +1,7 @@
 <?php
 include "../conexao.php";
 include "../verifica_sessao.php";
+$nomeCliente = $_SESSION['nome_cliente'] ?? '';
 
 
 
@@ -18,17 +19,7 @@ include "../verifica_sessao.php";
 </head>
 
 <body>
-    <script>
-        inserirClienteCampo('<?php
-    // Traz o cliente selecionado ao campo
-        if (isset($_SESSION['id_cliente']) && isset($_SESSION['nome_cliente'])){
-             echo addslashes($_SESSION['nome_cliente']);
-        }else{
-            echo '';
-        }
-    ?>'
-    )
-    </script>
+    
     
     <header>
         <div class="header">
@@ -70,14 +61,23 @@ include "../verifica_sessao.php";
             <div class="area">
             
                 <div class="square">
-                    <?php if(isset($_SESSION['nome_cliente'])){
-                echo  $_SESSION['nome_cliente'];   
-            }
-            ?>
+                    
+            
                     <div class="left">
                         <h1>Dados</h1>
                         <div class="dados-pessoas">
-                            <div class="select-colaborador">
+                           
+                            <form class="form-cliente" method="get"
+                                action="pagina_venda_cliente/pagina_venda_cliente.php">
+                                <label>Cliente</label>
+                                <div class="procurar-cliente">
+                                    <input type="text" name="cliente" value="<?= htmlspecialchars($nomeCliente, ENT_QUOTES) ?>" id="clienteInput" placeholder="Cliente..." readonly />
+                                    <button ><img src="assets/imagens/lupa.png" /></button>
+                                </div>
+
+
+                            </form>
+                             <div class="select-colaborador">
                                 <label>Colaborador</label>
                                 <select>
                                     <option>Selcione o Colaborador</option>
@@ -96,25 +96,84 @@ include "../verifica_sessao.php";
 
                             </div>
 
-                            <form class="form-cliente" method="get"
-                                action="pagina_venda_cliente/pagina_venda_cliente.php">
-                                <label>Cliente</label>
-                                <div class="procurar-cliente">
-                                    <input type="text" name="cliente" id="clienteInput" placeholder="Nome do cliente" readonly />
-                                    <button><img src="assets/imagens/lupa.png" /></button>
-                                </div>
-
-
-                            </form>
-
-
 
                         </div>
+                        <div class="selecao-produto">
+                            <h1>Seleção de Produto</h1>
+
+                        </div>
+                        <form class="form-procurar" method="get">
+                            <input type="text" name="pesquisa" placeholder="Pesquise aqui um produto..." />
+                            <button> <img src="assets/imagens/lupa.png" /></button>
+                        </form>
+                        <?php
+                        if (isset($_GET['pesquisa'])) {
+                            $pesquisa = $_GET['pesquisa'];
+
+
+                            $pesquisa = mysqli_real_escape_string($conn, $pesquisa);
+
+                            $sql_code = "SELECT * FROM produtos WHERE NOME_PROD LIKE '$pesquisa%' AND EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}' LIMIT 10";
+                        } else {
+                            $sql_code = "SELECT * FROM produtos WHERE EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}' LIMIT 10";
+                        }
+                        ?>
+                         <!-- Exibição PRODUTOS -->
+                        <table id="tabelaBusca">
+                            <?php
+
+                            $result = mysqli_query($conn, $sql_code);
+                            if (!$result) {
+                                echo "Erro na consulta: " . mysqli_error($conn);
+                            }
+
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $row['NOME_PROD']; ?></td>
+                                    <td><?php echo $row['QUANTIDADE_PROD'] . " UN"; ?></td>
+                                    <td><?php echo "R$ " . $row['PRECO_PROD']; ?></td>
+                                    <td><button
+                                            onclick="consultaProduto(<?php echo $row['ID_PROD']; ?>, '<?php echo addslashes($row['NOME_PROD']); ?>','<?php echo addslashes($row['FORNECEDOR_PROD']); ?>',<?php echo $row['QUANTIDADE_PROD']; ?>, <?php echo $row['PRECO_PROD']; ?>)">+</button>
+                                    </td>
+
+                                </tr>
+                                <?php
+                            }
+                            ?>
+
+
+                        </table>                
 
 
                     </div>
                     <div class="right">
                         <h1>Venda</h1>
+                        <div class="selecionar-quantidade">
+                            <form class="selecionar-quantidade-form">
+                                <input type="hidden" id="id-produto" name="id-produto"/>
+                                <div class="campo-selecao produto">
+                                    <label>Produto</label>
+                                    <input type="text" id="nome-produto" name="nome-produto"  readonly/>
+                                </div>
+                                <div class="campo-selecao quantidade">
+                                     <label>Qtd</label>
+                                    <input type="number" id="qtd-produto" name="qtd-produto"/>
+                                </div>
+                                <div class="campo-selecao preco-total">
+                                    <label>Preço Total</label>
+                                    <input type="number" id="preco-total" name="preco-total" readonly/>
+                                </div>
+                                <div class="botao-form">
+                                    <button>ADD</button>
+                                </div>
+                                <div class="botao-form">
+                                    <button>Limpar</button>
+                                </div>
+                            </form>
+
+                            <!-- Tabela de Itens  -->
+                        </div>
                     </div>
                 </div>
 
