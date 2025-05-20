@@ -20,3 +20,29 @@ function inserirClienteCampo(nome){
     }
     
 }
+function consultaProduto(id, nome_produto, fornecedor, quantidade, preco) {
+    document.getElementById("id-produto").value = id;
+    document.getElementById("nome-produto").value = nome_produto;
+    document.getElementById("qtd-produto").value = 1;
+    document.getElementById("preco-total").dataset.precoUnitario = preco;
+    document.getElementById("preco-total").value = preco.toFixed(2);
+}
+function calculaPrecoProduto(quantidade, preco){
+
+}
+
+// Função para atualizar o preço total
+function atualizarPrecoTotal() {
+    const qtdInput = document.getElementById('qtd-produto');
+    const precoTotalInput = document.getElementById('preco-total');
+    const precoUnitario = parseFloat(precoTotalInput.dataset.precoUnitario || 0);
+    const quantidade = parseInt(qtdInput.value) || 0;
+    precoTotalInput.value = (quantidade * precoUnitario).toFixed(2);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const qtdInput = document.getElementById('qtd-produto');
+    if (qtdInput) {
+        qtdInput.addEventListener('input', atualizarPrecoTotal);
+    }
+});
