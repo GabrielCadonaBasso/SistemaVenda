@@ -2,8 +2,9 @@
 include "../conexao.php";
 include "../verifica_sessao.php";
 $nomeCliente = $_SESSION['nome_cliente'] ?? '';
-
-
+$idCliente= $_SESSION['id_cliente'] ?? '';
+$nomeColaborador = $_SESSION['nome_colaborador'] ?? '';
+$id_colaborador = $_POST['id_colaborador'] ?? '';
 
 
 ?>
@@ -61,14 +62,13 @@ $nomeCliente = $_SESSION['nome_cliente'] ?? '';
             <div class="area">
             
                 <div class="square">
-                    
+                   
             
                     <div class="left">
                         <h1>Dados</h1>
                         <div class="dados-pessoas">
                            
-                            <form class="form-cliente" method="get"
-                                action="pagina_venda_cliente/pagina_venda_cliente.php">
+                            <form class="form-cliente" method="get" action="pagina_venda_cliente/pagina_venda_cliente.php">
                                 <label>Cliente</label>
                                 <div class="procurar-cliente">
                                     <input type="text" name="cliente" value="<?= htmlspecialchars($nomeCliente, ENT_QUOTES) ?>" id="clienteInput" placeholder="Cliente..." readonly />
@@ -77,24 +77,16 @@ $nomeCliente = $_SESSION['nome_cliente'] ?? '';
 
 
                             </form>
-                             <div class="select-colaborador">
+                            <form method="post" class="form-colaborador" action="pagina_venda_colaborador/pagina_venda_colaborador.php">
+                             
                                 <label>Colaborador</label>
-                                <select>
-                                    <option>Selcione o Colaborador</option>
-                                    <?php
-                                    $sql_code = "select * from funcionarios where EMPRESAS_ID_EMP = '{$_SESSION['ID_EMP']}'";
-                                    $result = mysqli_query($conn, $sql_code);
-                                    if (!$result) {
-                                        echo "Erro na consulta: " . mysqli_error($conn);
-                                    }
-                                    while ($row = mysqli_fetch_array($result)) {
-                                        ?>
+                                <div class="procurar-colaborador">
+                                    <input type="text" name="colaborador" value="<?= htmlspecialchars($nomeColaborador, ENT_QUOTES) ?>" id="colaboradorInput" placeholder="Colaborador..." readonly />
+                                    <button ><img src="assets/imagens/lupa.png" /></button>
+                                </div>
 
-                                        <option><?php echo $row['NOME_FUNC'] ?> </option>
-                                    <?php } ?>
-                                </select>
-
-                            </div>
+                            
+                            </form>
 
 
                         </div>
@@ -162,7 +154,7 @@ $nomeCliente = $_SESSION['nome_cliente'] ?? '';
                                 </div>
                                 <div class="campo-selecao preco-total">
                                     <label>Preço Total</label>
-                                    <input type="number" id="preco-total" name="preco-total" readonly/>
+                                    <input type="number" id="preco-total" name="preco-total" readonly data-preco-unitario="0"/>
                                 </div>
                                 <div class="botao-form">
                                     <button>ADD</button>
@@ -171,7 +163,18 @@ $nomeCliente = $_SESSION['nome_cliente'] ?? '';
                                     <button>Limpar</button>
                                 </div>
                             </form>
-
+                            <?php
+                                // if (isset($_POST['id-produto'])){
+                                //     if(isset($_SESSION['idvenda'])){
+                                        
+                                //     }else{
+                                //         $dataAtual = date('Y-m-d');
+                                        
+                                //         $_SESSION['idvenda']
+                                //     }
+                                // }
+                            
+                            ?>
                             <!-- Tabela de Itens  -->
                         </div>
                     </div>
