@@ -85,7 +85,12 @@ $data = $_GET['data-venda'] ?? date('Y-m-d');
                                 <td><?php echo $row['CLIENTES_ID_CL']; ?></td>
                                 <td><?php echo "R$ ". $row['TOTAL_VENDA']; ?></td>
                                 <td><?php echo $row['METODO_PAGAMENTO']; ?></td>
-                                <td></td>
+                                <td>
+                                    <form action="../pagina_venda_detalhes/pagina_venda_detalhes.php" method="get" style="margin:0;">
+                                        <input type="hidden" name="id_venda" value="<?php echo $row['ID_VEND']; ?>">
+                                        <button type="submit">i</button>
+                                    </form>
+                                </td>
                                
                             </tr>
                             <?php
