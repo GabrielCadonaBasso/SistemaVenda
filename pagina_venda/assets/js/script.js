@@ -27,9 +27,7 @@ function consultaProduto(id, nome_produto, fornecedor, quantidade, preco) {
     document.getElementById("preco-total").dataset.precoUnitario = preco;
     document.getElementById("preco-total").value = preco.toFixed(2);
 }
-function calculaPrecoProduto(quantidade, preco){
 
-}
 
 // Função para atualizar o preço total
 function atualizarPrecoTotal() {
@@ -46,3 +44,36 @@ document.addEventListener('DOMContentLoaded', function() {
         qtdInput.addEventListener('input', atualizarPrecoTotal);
     }
 });
+document.getElementById('botao-limpar').addEventListener('click', function() {
+        document.getElementById('id-produto').value = '';
+        document.getElementById('nome-produto').value = '';
+        document.getElementById('qtd-produto').value = '';
+        document.getElementById('preco-total').value = '';
+    });
+function atualizarValorTotalHidden() {
+    const valorTotal = document.getElementById('valor-total');
+    const valorTotalHidden = document.getElementById('valor-total-hidden');
+    if (valorTotal && valorTotalHidden) {
+        valorTotalHidden.value = valorTotal.value;
+    }
+}
+
+// Atualiza o valor total e o hidden ao carregar a página
+window.addEventListener('DOMContentLoaded', function() {
+    let total = 0;
+    document.querySelectorAll('.lista-compras table tr td:nth-child(4)').forEach(function(td) {
+        let valor = td.textContent.replace('R$', '').replace(/\./g, '').replace(',', '.').trim();
+        if (!isNaN(valor) && valor !== '') {
+            total += parseFloat(valor);
+        }
+    });
+    const valorTotalInput = document.getElementById('valor-total');
+    if (valorTotalInput) {
+        valorTotalInput.value = total.toFixed(2);
+    }
+    atualizarValorTotalHidden();
+});
+
+function printar(){
+    alert("Não é possível")
+}
