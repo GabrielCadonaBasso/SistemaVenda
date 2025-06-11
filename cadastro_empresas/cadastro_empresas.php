@@ -27,7 +27,7 @@
                     <form action="" method="post">
                         <input type="text" name="nome" maxlength="45"placeholder="Nome" required />
                         <input type="text" name="cnpj" oninput="formatarCNPJ(this)" placeholder="00.000.000/0000-00" id="cnpj" required />
-                        <input type="email" name="email" placeholder="Email" maxlength="16" required />
+                        <input type="email" name="email" placeholder="Email" maxlength="100" required />
                         <input type="password" name="senha" placeholder="Senha"  maxlength="16" required />
                         <div class="DoisBotoes">
                             <a class="botao_link" href="../login_empresas/login_empresas.php">Voltar</a>

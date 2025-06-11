@@ -163,25 +163,32 @@ $id_colaborador = $_SESSION['id_colaborador'] ?? '';
                         <div class="selecionar-quantidade">
                             <form class="selecionar-quantidade-form" method="post">
                                 <input type="hidden" id="id-produto" name="id-produto" />
+
                                 <div class="campo-selecao produto">
                                     <label>Produto</label>
                                     <input type="text" id="nome-produto" name="nome-produto" readonly />
                                 </div>
-                                <div class="campo-selecao quantidade">
-                                    <label>Qtd</label>
-                                    <input type="number" id="qtd-produto" name="qtd-produto" />
+                                <div class="valor-quantidade">
+                                    <div class="campo-selecao quantidade">
+                                        <label>Qtd</label>
+                                        <input type="number" id="qtd-produto" name="qtd-produto" />
+                                    </div>
+                                    <div class="campo-selecao preco-total">
+                                        <label>Preço Total</label>
+                                        <input type="number" id="preco-total" name="preco-total" readonly
+                                            data-preco-unitario="0" />
+                                    </div>
                                 </div>
-                                <div class="campo-selecao preco-total">
-                                    <label>Preço Total</label>
-                                    <input type="number" id="preco-total" name="preco-total" readonly
-                                        data-preco-unitario="0" />
-                                </div>
-                                <div class="botao-form">
+
+                                <div class="botoes-form">
+                                    <div class="botao-form">
                                     <button id="botao-add" name="botao-add">ADD</button>
                                 </div>
                                 <div class="botao-form">
                                     <button id="botao-limpar" name="botao-limpar">Limpar</button>
                                 </div>
+                                </div>
+                                
                             </form>
                             <?php
                             if (isset($_POST['botao-add']) && $_POST['id-produto'] != "") {
@@ -249,7 +256,7 @@ $id_colaborador = $_SESSION['id_colaborador'] ?? '';
                                     exit();
                                 }
                             }
-                            
+
 
                             ?>
                             <!-- Tabela de Itens  -->
@@ -266,7 +273,7 @@ $id_colaborador = $_SESSION['id_colaborador'] ?? '';
                                 <?php
                                 if (isset($_SESSION['id_venda'])) {
                                     $id_venda = $_SESSION['id_venda'];
-                                    
+
                                     $venda = mysqli_query($conn, "SELECT * FROM produto_cupom WHERE vendas_ID_VEND = $id_venda ");
                                     if (!$venda) {
                                         echo "Erro na consulta: " . mysqli_error($conn);
@@ -280,7 +287,7 @@ $id_colaborador = $_SESSION['id_colaborador'] ?? '';
                                             <td><?php echo "R$ " . number_format($row['PRECO_UN'], 2, ',', '.'); ?></td>
                                             <td><?php echo "R$ " . number_format($row['PRECO_TOTAL'], 2, ',', '.'); ?></td>
                                             <td>
-                                                
+
                                             </td>
                                         </tr>
                                         <?php
@@ -303,10 +310,10 @@ $id_colaborador = $_SESSION['id_colaborador'] ?? '';
                             <button class="vermelho" name="botao-cancelar-compra"
                                 id="botao-cancelar-compra">CANCELAR</button>
                             <button class="verde" name="botao-finalizar-compra" id="botao-finalizar-compra">FINALIZAR
-                                COMPRA</button>
+                                VENDA</button>
                         </form>
                         <?php
-                        if (isset($_POST['botao-cancelar-compra'])&& isset($_SESSION['id_venda'])) {
+                        if (isset($_POST['botao-cancelar-compra']) && isset($_SESSION['id_venda'])) {
                             $id_venda = $_SESSION['id_venda'];
                             $sql = "SELECT ID_PROD, QUANT_ITENS FROM produto_cupom WHERE vendas_ID_VEND = $id_venda";
                             $result = mysqli_query($conn, $sql);

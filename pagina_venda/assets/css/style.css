@@ -347,6 +347,7 @@ header {
     
     display: flex;
     justify-content: end;
+    
 }
 .square .right .botao-extrato button{
     background: none;
@@ -357,19 +358,21 @@ header {
     justify-content: center;
     align-items: center;
     padding: 5px;
+    border: 1px black solid;
 }
 .square .right .botao-extrato button:hover{
     opacity: 0.5;
 }
 .square .right .botao-extrato button img{
     background-position: cover;
-    height: 30px;
+    height: 25px;
 }
 .square .right .selecionar-quantidade-form{
     display: flex;
     height: 100%;
     gap: 2px; 
     align-items: flex-end; 
+    
 }
 .square .right .selecionar-quantidade-form input{
     font-size: 15px;
@@ -383,26 +386,39 @@ header {
 .square .right .selecionar-quantidade-form .campo-selecao{
     display: flex;
     flex-direction: column;
-}
-.square .right .selecionar-quantidade-form .nome-produto input{
     width: 100%;
-    max-width: 100px;
+    gap:2px;
 }
+.square .right .selecionar-quantidade-form .produto {
+    width: 100%;
+    max-width: 300px;
+}
+.square .right .selecionar-quantidade-form .valor-quantidade{
+    display: flex;
+    width: 100%;
+    align-items: end;
+}
+
 .square .right .selecionar-quantidade-form .quantidade input{
     width: 100%;
     max-width: 100px;
     
 }
 .square .right .selecionar-quantidade-form .preco-total input{
-   width: 100%;
-    max-width: 120px; 
+    width: 100%;
+    max-width: 100px; 
     
+}
+.square .right .selecionar-quantidade-form .botoes-form{
+    display:flex;
+    width: 100%;
 }
 .square .right .selecionar-quantidade-form .botao-form{
     height: 100%;
     display:flex;
     align-items: end;
     margin-left: 2px;
+    width: 100%;
     
 }
 .square .right .selecionar-quantidade-form  button{
@@ -550,7 +566,7 @@ header {
 }
 
 
-@media(max-width:750px) {
+@media(max-width:870px) {
      .menu nav {
         display: none;
     }
@@ -568,7 +584,32 @@ header {
     .square .left, .square .right{
         width: 100%;
     }
+    .square .dados-pessoas {
+    display: flex;
+    flex-direction: column;
+    gap:0;
+    width: 100%;
+    }
+    .square .dados-pessoas .form-cliente  {
+        width: 100%;
+        max-width: 870px;
+    }
+    .square .dados-pessoas .form-colaborador{
+        width: 100%;
+        max-width: 870px;
+    }
     .main {
         height: auto;
+    }
+    .square .right .selecionar-quantidade-form{
+        flex-direction: column;
+    }
+    .square .right .selecionar-quantidade-form .botoes-form{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .square .right .selecionar-quantidade-form .botoes-form button{
+        width: 100%;
     }
 }

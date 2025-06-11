@@ -69,7 +69,7 @@ $result_itens = mysqli_query($conn, $sql_itens);
                         <p><strong>Data/Hora:</strong> <?php echo date('d/m/Y H:i:s', strtotime($venda['DATA_VENDA'])); ?></p>
                         <p><strong>Cliente:</strong> <?php echo htmlspecialchars($venda['CLIENTES_ID_CL']); ?></p>
                         <p><strong>Vendedor:</strong> <?php echo htmlspecialchars($venda['FUNCIONARIOS_ID_FUNC']); ?></p>
-                        <p><strong>Método de Pagamento:</strong> <?php echo htmlspecialchars($venda['METODO_PAGAMENTO']); ?></p>
+                        <p><strong>Status:</strong> <?php echo htmlspecialchars($venda['METODO_PAGAMENTO']); ?></p>
                         <p><strong>Total:</strong> R$ <?php echo number_format($venda['TOTAL_VENDA'], 2, ',', '.'); ?></p>
                         <hr>
                         <h2>Itens Comprados</h2>
