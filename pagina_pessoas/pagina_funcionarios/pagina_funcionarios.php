@@ -35,7 +35,7 @@
 
                         <ul>
                             <li><a href="../../pagina_venda/pagina_venda.php">Voltar</a></li>
-                            <li><a href="../logout/logout.php"><img src='assets/imagens/sair.png' /></a></li>
+                            <li><a href="../../logout/logout.php"><img src='assets/imagens/sair.png' /></a></li>
                         </ul>
                     </nav>
                     <div class="menu-mobile" id="menu-mobile" onclick="menu()">

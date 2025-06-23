@@ -10,6 +10,7 @@ $id_venda = $_GET['id_venda'] ?? null;
 
 if (!$id_venda) {
     echo "<div style='color:red;'>Venda não encontrada!</div>";
+    header("location: ../pagina_venda_extrato/pagina_venda_extrato.php");
     exit();
 }
 
@@ -65,30 +66,41 @@ $result_itens = mysqli_query($conn, $sql_itens);
             <div class="area">
                 <div class="square">
                     <div class="procurar-tabela">
-                        <h1>Detalhes da Venda</h1>
-                        <p><strong>Data/Hora:</strong> <?php echo date('d/m/Y H:i:s', strtotime($venda['DATA_VENDA'])); ?></p>
-                        <p><strong>Cliente:</strong> <?php echo htmlspecialchars($venda['CLIENTES_ID_CL']); ?></p>
-                        <p><strong>Vendedor:</strong> <?php echo htmlspecialchars($venda['FUNCIONARIOS_ID_FUNC']); ?></p>
-                        <p><strong>Status:</strong> <?php echo htmlspecialchars($venda['METODO_PAGAMENTO']); ?></p>
-                        <p><strong>Total:</strong> R$ <?php echo number_format($venda['TOTAL_VENDA'], 2, ',', '.'); ?></p>
-                        <hr>
-                        <h2>Itens Comprados</h2>
-                        <table border="1" cellpadding="5" cellspacing="0">
-                            <tr>
-                                <th>Produto</th>
-                                <th>Quantidade</th>
-                                <th>Preço Unitário</th>
-                                <th>Preço Total</th>
-                            </tr>
-                            <?php while ($item = mysqli_fetch_assoc($result_itens)) { ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($item['NOME_PRODUTO']); ?></td>
-                                <td><?php echo $item['QUANT_ITENS']; ?></td>
-                                <td>R$ <?php echo number_format($item['PRECO_UN'], 2, ',', '.'); ?></td>
-                                <td>R$ <?php echo number_format($item['PRECO_TOTAL'], 2, ',', '.'); ?></td>
-                            </tr>
-                            <?php } ?>
-                        </table>
+                        <div class="detalhes-venda">
+                            <h1>Detalhes da Venda</h1>
+                            <p>Data/Hora:
+                                <?php echo date('d/m/Y H:i:s', strtotime($venda['DATA_VENDA'])); ?>
+                            </p>
+                            <p>Cliente: <?php echo htmlspecialchars($venda['CLIENTES_ID_CL']); ?></p>
+                            <p>Vendedor:
+                                <?php echo htmlspecialchars($venda['FUNCIONARIOS_ID_FUNC']); ?>
+                            </p>
+                            <p>Status: <?php echo htmlspecialchars($venda['METODO_PAGAMENTO']); ?></p>
+                            <p>Total: R$
+                                <?php echo number_format($venda['TOTAL_VENDA'], 2, ',', '.'); ?>
+                            </p>
+                        </div>
+
+                        <div class="tabela">
+                            <h2>Itens Comprados</h2>
+                            <table>
+                                <tr>
+                                    <th>Produto</th>
+                                    <th>Quantidade</th>
+                                    <th>Preço Unitário</th>
+                                    <th>Preço Total</th>
+                                </tr>
+                                <?php while ($item = mysqli_fetch_assoc($result_itens)) { ?>
+                                    <tr>
+                                        <td><?php echo htmlspecialchars($item['NOME_PRODUTO']); ?></td>
+                                        <td><?php echo $item['QUANT_ITENS']; ?></td>
+                                        <td>R$ <?php echo number_format($item['PRECO_UN'], 2, ',', '.'); ?></td>
+                                        <td>R$ <?php echo number_format($item['PRECO_TOTAL'], 2, ',', '.'); ?></td>
+                                    </tr>
+                                <?php } ?>
+                            </table>
+                        </div>
+
                         <br>
                         <a href="../pagina_venda_extrato/pagina_venda_extrato.php">Voltar ao Extrato</a>
                     </div>

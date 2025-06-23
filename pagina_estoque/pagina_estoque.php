@@ -117,12 +117,12 @@ ob_start();
                             <div class="preco-quantia">
                                 <div class="quantia">
                                     <label>Quantidade</label><br>
-                                    <input type="number" name="quantidade-produto" id="quantidade-produto"
+                                    <input type="number" min="0" name="quantidade-produto" id="quantidade-produto"
                                         placeholder="Qtd do produto..." required />
                                 </div>
                                 <div class="preco">
                                     <label>Preço</label><br>
-                                    <input type="number" step="0.01" name="preco-produto" id="preco-produto"
+                                    <input type="number" min="0" step="0.01" name="preco-produto" id="preco-produto"
                                         placeholder="Preço do produto..." required />
                                 </div>
 

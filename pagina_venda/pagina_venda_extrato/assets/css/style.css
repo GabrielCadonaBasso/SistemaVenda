@@ -144,8 +144,8 @@ header {
 .square  .form-cliente {
     display: flex;
     flex-direction: column;
-    width: 600px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 600px;
 }
 .square  .form-cliente .procurar-cliente{
     display: flex;
@@ -213,14 +213,9 @@ header {
 
 
 @media(max-width:750px) {
-    .menu nav {
-        display: none;
-    }
+    
 
-    .menu-mobile {
-        display: flex;
-        cursor: pointer;
-    }
+    
 
     .main {
         height: auto;

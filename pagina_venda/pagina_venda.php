@@ -171,7 +171,7 @@ $id_colaborador = $_SESSION['id_colaborador'] ?? '';
                                 <div class="valor-quantidade">
                                     <div class="campo-selecao quantidade">
                                         <label>Qtd</label>
-                                        <input type="number" id="qtd-produto" name="qtd-produto" />
+                                        <input type="number" id="qtd-produto" name="qtd-produto" min="0" />
                                     </div>
                                     <div class="campo-selecao preco-total">
                                         <label>Preço Total</label>
@@ -191,7 +191,7 @@ $id_colaborador = $_SESSION['id_colaborador'] ?? '';
                                 
                             </form>
                             <?php
-                            if (isset($_POST['botao-add']) && $_POST['id-produto'] != "") {
+                            if (isset($_POST['botao-add']) && $_POST['id-produto'] != "" && $_POST['qtd-produto']>0) {
                                 $idaux = $_POST['id-produto'];
                                 $sql = "SELECT QUANTIDADE_PROD FROM produtos WHERE ID_PROD = $idaux";
                                 $result = mysqli_query($conn, $sql);
@@ -249,7 +249,7 @@ $id_colaborador = $_SESSION['id_colaborador'] ?? '';
                                             }
                                         }
                                     } else {
-                                        echo "<script>alert('Quantidade solicitada maior que disponível em estoque!');</script>";
+                                        echo "Quantidade solicitada maior que disponível em estoque!";
                                     }
                                 } else {
                                     echo "<div style='color:red;'>Produto não encontrado!</div>";
